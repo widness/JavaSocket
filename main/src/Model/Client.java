@@ -1,4 +1,4 @@
-package server.Model;
+package Model;
 
 public class Client {
 }
