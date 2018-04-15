@@ -1,19 +1,24 @@
 package server;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
 import java.util.Enumeration;
 
 public class NewServerConnection {
+
     public NewServerConnection(){
-        ServerSocket mySkServer ;
         Socket srvSocket = null ;
-        InetAddress localAddress=null;
+        InetAddress localAddress = null;
+        ServerSocket mySkServer;
         String interfaceName = "eth1";
 
+        int ClientNo = 1;
 
         try {
-            // Cherche le type d'address IP
             NetworkInterface ni = NetworkInterface.getByName(interfaceName);
             Enumeration<InetAddress> inetAddresses =  ni.getInetAddresses();
             while(inetAddresses.hasMoreElements()) {
@@ -27,36 +32,24 @@ public class NewServerConnection {
                 }
             }
 
-            // backlog : Connection simultané max
-            // LocalAdress : Ip cible
-            mySkServer = new ServerSocket(45000,5,localAddress);
-
+            //Warning : the backlog value (2nd parameter is handled by the implementation
+            mySkServer = new ServerSocket(45000,10,localAddress);
             System.out.println("Default Timeout :" + mySkServer.getSoTimeout());
             System.out.println("Used IpAddress :" + mySkServer.getInetAddress());
             System.out.println("Listening to Port :" + mySkServer.getLocalPort());
 
-            mySkServer.setSoTimeout(30000);//set 30 sec timout
+            //wait for a client connection
+            while(true)
+            {
+                Socket clientSocket = mySkServer.accept();
+                System.out.println("Hey, somebody want to connect!");
+                Thread t = new Thread(new AcceptClient(clientSocket,ClientNo));
+                ClientNo++;
+                //starting the thread
+                t.start();
+            }
 
-            //Listen to a client connection wait until a client connects
-            System.out.println("Waiting for a client connection:");
-
-            // Listening
-            srvSocket = mySkServer.accept();
-
-            System.out.println("A client is connected");
-
-            // Close listening
-            mySkServer.close();
-            srvSocket.close();
-
-            System.out.println("Closing socket....");
-
-        }catch (SocketException e) {
-
-            //System.out.println("Connection Timed out");
-            e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

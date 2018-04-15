@@ -1,4 +1,4 @@
-package server;
+package Client;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -6,10 +6,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class NewClientConnection {
+
     public NewClientConnection() {
         Socket clientSocket;
         InetAddress serverAddress;
-        String serverName = "192.168.108.10";
+        String serverName = "0.0.0.0";
 
         try {
             serverAddress = InetAddress.getByName(serverName);
