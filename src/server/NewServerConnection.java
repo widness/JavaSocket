@@ -14,7 +14,7 @@ public class NewServerConnection {
         Socket srvSocket = null ;
         InetAddress localAddress = null;
         ServerSocket mySkServer;
-        String interfaceName = "eth1";
+        String interfaceName = "vlan";
 
         int ClientNo = 1;
 
