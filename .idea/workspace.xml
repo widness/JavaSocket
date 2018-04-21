@@ -2,10 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffa840c6-8c5a-4a9d-bc0a-433d27df0031" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/client/Main.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/client/NewClientConnection.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/.gitignore" afterPath="$PROJECT_DIR$/out/production/JavaSocket/.gitignore" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Client/Main.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Client/Main.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/server/NewServerConnection.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/server/NewServerConnection.class" />
-      <change beforePath="$PROJECT_DIR$/src/server/NewServerConnection.java" afterPath="$PROJECT_DIR$/src/server/NewServerConnection.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Client/NewClientConnection.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Client/NewClientConnection.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Client/NewRWClient.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Client/NewRWClient.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Controller/Clients.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Controller/Clients.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Model/Client.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Model/Client.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Model/File.class" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Model/File.class" />
+      <change beforePath="$PROJECT_DIR$/src/Client/Main.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/Client/NewClientConnection.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/Client/NewRWClient.java" afterPath="$PROJECT_DIR$/src/client/NewRWClient.java" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Clients.java" afterPath="$PROJECT_DIR$/src/controller/Clients.java" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Client.java" afterPath="$PROJECT_DIR$/src/model/Client.java" />
+      <change beforePath="$PROJECT_DIR$/src/Model/File.java" afterPath="$PROJECT_DIR$/src/model/File.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/server/NewServerConnection.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
-              <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+              <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -37,11 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewRWServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NewRWServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/NewRWServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-78">
-              <caret line="26" column="13" lean-forward="true" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Client/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -274,6 +295,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -288,7 +310,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -430,14 +452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -457,7 +471,7 @@
     <entry file="file://$PROJECT_DIR$/src/server/NewServerConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -473,7 +487,15 @@
     <entry file="file://$PROJECT_DIR$/src/server/NewRWServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-78">
-          <caret line="26" column="13" lean-forward="true" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding />
         </state>
       </provider>
