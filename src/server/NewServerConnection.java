@@ -11,10 +11,11 @@ import java.util.Enumeration;
 public class NewServerConnection {
 
     public NewServerConnection(){
+
         Socket srvSocket = null ;
         InetAddress localAddress = null;
         ServerSocket mySkServer;
-        String interfaceName = "vlan";
+        String interfaceName = "wlan1";
 
         int ClientNo = 1;
 
