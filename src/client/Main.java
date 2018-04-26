@@ -10,7 +10,7 @@ public class Main {
 
     	System.out.print("Hello.\nWhat's your pseudo? ");
     	clientPseudo = scan.nextLine();
-    	System.out.print("What's your password?" );
+    	System.out.print("What's your password? ");
     	password = scan.nextLine();
 
     	NewClientConnection sc = new NewClientConnection(clientPseudo, password,
