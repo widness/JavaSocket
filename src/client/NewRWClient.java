@@ -14,7 +14,7 @@ public class NewRWClient {
 
         Socket clientSocket;
         InetAddress serverAddress;
-        String serverName = "192.168.108.10";
+        String serverName = "192.168.71.105";
 
         try {
             serverAddress = InetAddress.getByName(serverName);

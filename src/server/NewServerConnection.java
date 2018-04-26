@@ -1,5 +1,8 @@
 package server;
 
+import controller.Clients;
+import controller.NetworkManager;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -10,30 +13,20 @@ import java.util.Enumeration;
 
 public class NewServerConnection {
 
+    private NetworkManager networkManager = new NetworkManager();
+
     public NewServerConnection(){
 
         Socket srvSocket = null ;
         InetAddress localAddress = null;
         ServerSocket mySkServer;
-        String interfaceName = "wlan1";
 
         int ClientNo = 1;
 
-        try {
-            NetworkInterface ni = NetworkInterface.getByName(interfaceName);
-            Enumeration<InetAddress> inetAddresses =  ni.getInetAddresses();
-            while(inetAddresses.hasMoreElements()) {
-                InetAddress ia = inetAddresses.nextElement();
-
-                if(!ia.isLinkLocalAddress()) {
-                    if(!ia.isLoopbackAddress()) {
-                        System.out.println(ni.getName() + "->IP: " + ia.getHostAddress());
-                        localAddress = ia;
-                    }
-                }
-            }
-
-            //Warning : the backlog value (2nd parameter is handled by the implementation
+        try{
+            localAddress = networkManager.getLocalAddress("wlan1");
+            //Port: Max 47823
+            //Warning : the backlog value (2nd parameter) is handled by the implementation
             mySkServer = new ServerSocket(45000,10,localAddress);
             System.out.println("Default Timeout :" + mySkServer.getSoTimeout());
             System.out.println("Used IpAddress :" + mySkServer.getInetAddress());

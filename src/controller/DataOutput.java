@@ -14,8 +14,8 @@ public class DataOutput {
 	}
 	
 	
-	public void giveInformationToServer(String clientPseudo, String password) {
-		String message = clientPseudo+ "|" +password;
+	public void giveInformationToServer(String clientPseudo, String password, String ip, String port) {
+		String message = clientPseudo + "-" + password + "-" + ip + "-" + port;
 		
 		try {
 			pout = new PrintWriter(socket.getOutputStream());

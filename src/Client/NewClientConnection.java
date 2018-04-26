@@ -6,9 +6,13 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import controller.DataOutput;
+import controller.NetworkManager;
 
 
 public class NewClientConnection {
+
+    private NetworkManager networkManager = new NetworkManager();
+
 	private Socket clientSocket;
 	private InetAddress serverAddress;
 	private String serverIP;
@@ -16,30 +20,33 @@ public class NewClientConnection {
 	private String password;
 	private PrintWriter pout;
 	private DataOutput dataOutput;
+	private String localIP;
+	private int port;
 	
-	public NewClientConnection(String serverIP, String clientPseudo, String password) {
-		this.serverIP = serverIP;
+	public NewClientConnection(String clientPseudo, String password,
+                               String serverIP, String networkInterface, int port) {
 		this.clientPseudo = clientPseudo;
 		this.password = password;
+        this.serverIP = serverIP;
+		this.localIP = networkManager.getOwnIp(networkInterface);
+		this.port = port;
 	}
 	
 	public void connectToServer() {
-		try {			
-			//TODO : scan des adresses IP qui écoutent sur le port 45000
+		try {
 			serverAddress = InetAddress.getByName(serverIP);
-			System.out.println("I get the address of the server: " +serverAddress);
+			System.out.println("I get the address of the server: " + serverAddress);
 			
 			// Ask the server to create a new socket
-			clientSocket = new Socket(serverAddress, 45000);
+			clientSocket = new Socket(serverAddress, port);
 			System.out.println(clientSocket);
 			
-			System.out.println("I got the connexion to " +serverAddress);
+			System.out.println("I got the connexion to " + serverAddress);
 			
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
-			dataOutput.giveInformationToServer(clientPseudo, password);		
-			
-			
+			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port));
+
 			System.out.println("Now dying...");
 			
 			clientSocket.close();
