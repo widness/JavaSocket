@@ -1,15 +1,11 @@
 package server;
 
-import controller.Clients;
 import controller.NetworkManager;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
-import java.util.Enumeration;
 
 public class NewServerConnection {
 
@@ -36,11 +32,14 @@ public class NewServerConnection {
             while(true)
             {
                 Socket clientSocket = mySkServer.accept();
+                clientSocket.setSoTimeout(180000); // Timeout - 3min
+
                 System.out.println("Hey, somebody want to connect!");
+
                 Thread t = new Thread(new AcceptClient(clientSocket,ClientNo));
                 ClientNo++;
-                //starting the thread
-                t.start();
+
+                t.start(); //starting the thread
             }
 
         } catch (IOException e) {

@@ -30,7 +30,7 @@ public class AcceptClient implements Runnable {
             System.out.println("Socket is available for connection"+ clientSocketOnServer);
 
             dataInput = new DataInput(clientSocketOnServer);
-            recievedInformations = dataInput.receiveInformationFromClient();
+            recievedInformations = dataInput.receiveInfoFromClient();
 
             System.out.println("he send me: " + recievedInformations);
 
@@ -40,9 +40,8 @@ public class AcceptClient implements Runnable {
                 throw new IllegalAccessException("String: " + recievedInformations + "doesn't containe -");
             }
             if(clients.isClient(client[0])){
-                if(clients.isPwdCorrect(client[0], client[1])){
+                if(clients.isPwdCorrect(client[0], client[1]))
                     clients.updateClient(client[0], client[1], client[2], client[3]);
-                }
             } else {
                 clients.addNewClient(client[0], client[1], client[2], client[3]);
             }
