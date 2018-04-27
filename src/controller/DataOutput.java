@@ -13,7 +13,6 @@ public class DataOutput {
 		this.socket = socket;
 	}
 	
-	
 	public void giveInformationToServer(String clientPseudo, String password, String ip, String port) {
 		String message = clientPseudo + "-" + password + "-" + ip + "-" + port;
 		
@@ -41,9 +40,5 @@ public class DataOutput {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
 	
 }
