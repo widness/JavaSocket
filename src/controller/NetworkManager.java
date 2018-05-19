@@ -17,11 +17,9 @@ public class NetworkManager {
             while (inetAddresses.hasMoreElements()) {
                 InetAddress ia = inetAddresses.nextElement();
 
-                if (!ia.isLinkLocalAddress()) {
-                    if (!ia.isLoopbackAddress()) {
-                        System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
-                        localAddress = ia;
-                    }
+                if (!ia.isLoopbackAddress()) {                 
+                	System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
+                    localAddress = ia;                  
                 }
             }
             

@@ -2,6 +2,7 @@ package client;
 
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args){
     	Scanner scan = new Scanner(System.in);
@@ -13,9 +14,7 @@ public class Main {
     	System.out.print("What's your password? ");
     	password = scan.nextLine();
 
-    	NewClientConnection sc = new NewClientConnection(clientPseudo, password,
-                "192.168.43.238", "wlan1", 45000);
+    	NewClientConnection sc = new NewClientConnection(clientPseudo, password, "192.168.43.238", "wlan1", 45000);
         sc.connectToServer();
-
     }
 }

@@ -10,13 +10,15 @@ public class DataInput {
 	private Socket socket;
 	private BufferedReader buffin;
 
+	
 	public DataInput(Socket socket) {
 		this.socket = socket;
 	}
 
+	
 	public String receiveInfoFromClient() {
 		try {
-			buffin = new BufferedReader (new InputStreamReader(socket.getInputStream()));
+			buffin = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String message = buffin.readLine();
 
 			buffin.close();
@@ -27,5 +29,4 @@ public class DataInput {
 
 		return null;
 	}
-
 }

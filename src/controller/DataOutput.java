@@ -9,9 +9,11 @@ public class DataOutput {
 	private Socket socket;
 	private PrintWriter pout;
 
+	
 	public DataOutput(Socket socket) {
 		this.socket = socket;
 	}
+	
 	
 	public void giveInformationToServer(String clientPseudo, String password, String ip, String port) {
 		String message = clientPseudo + "-" + password + "-" + ip + "-" + port;
@@ -40,5 +42,4 @@ public class DataOutput {
 			e.printStackTrace();
 		}
 	}
-	
 }

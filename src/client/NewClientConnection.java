@@ -10,9 +10,7 @@ import controller.NetworkManager;
 
 
 public class NewClientConnection {
-
     private NetworkManager networkManager = new NetworkManager();
-
 	private Socket clientSocket;
 	private InetAddress serverAddress;
 	private String serverIP;
@@ -23,14 +21,15 @@ public class NewClientConnection {
 	private String localIP;
 	private int port;
 	
-	public NewClientConnection(String clientPseudo, String password,
-                               String serverIP, String networkInterface, int port) {
+	
+	public NewClientConnection(String clientPseudo, String password, String serverIP, String networkInterface, int port) {
 		this.clientPseudo = clientPseudo;
 		this.password = password;
         this.serverIP = serverIP;
 		this.localIP = networkManager.getOwnIp(networkInterface);
 		this.port = port;
 	}
+	
 	
 	public void connectToServer() {
 		try {

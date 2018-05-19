@@ -5,9 +5,11 @@ import model.Client;
 import java.io.*;
 import java.util.LinkedList;
 
+
 public class FileHandler {
     public static final String PATH = "clientList.txt";
 
+    
     public LinkedList<Client> readElements() {
         FileReader reader;
         String line = null;
@@ -17,9 +19,11 @@ public class FileHandler {
         try {
             reader = new FileReader(new File(PATH));
             BufferedReader bufferedReader = new BufferedReader(reader);
-            while (true) {
+            
+            while(true) {
                 line = bufferedReader.readLine();
-                if (line == null) break;
+                if (line == null)
+                	break;
 
                 lineSplitted = line.split(";");
                 returnList.add(new Client(
@@ -28,7 +32,6 @@ public class FileHandler {
                         lineSplitted[2],
                         lineSplitted[3]));
             }
-
         } catch (FileNotFoundException e) {
             return null;
         } catch (IOException e) {
@@ -38,10 +41,12 @@ public class FileHandler {
         return returnList;
     }
 
+    
     public void writeElement (Client element) {
         System.out.println("I'm gonna write it in my local file");
+        
         try {
-            FileWriter writer = new FileWriter(new File(PATH),true);
+            FileWriter writer = new FileWriter(new File(PATH), true);
             writer.write(element.toString() + "\n");
             writer.close();
         } catch (IOException e) {
@@ -49,9 +54,10 @@ public class FileHandler {
         }
     }
 
-    public static void readAll (LinkedList<Client> elements) {
-        System.out.println("Read file:");
-        for (Client element : elements) {
+    
+    public static void readAll(LinkedList<Client> elements) {
+        System.out.println("Read file: ");
+        for (Client element: elements) {
             System.out.println(element);
         }
     }
