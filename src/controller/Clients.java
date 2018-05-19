@@ -18,8 +18,7 @@ public class Clients {
             System.out.println("I've created a brend new client list");          
         }
     }
-
-
+    
     public boolean addNewClient(String pseudo, String password, String clientIP, String clientPort) {
         Client newClient = new Client(pseudo, password,  clientIP, clientPort);
 

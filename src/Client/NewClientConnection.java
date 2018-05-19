@@ -30,7 +30,6 @@ public class NewClientConnection {
 		this.port = port;
 	}
 	
-	
 	public void connectToServer() {
 		try {
 			serverAddress = InetAddress.getByName(serverIP);

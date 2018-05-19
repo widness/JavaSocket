@@ -16,10 +16,11 @@ public class NetworkManager {
 
             while (inetAddresses.hasMoreElements()) {
                 InetAddress ia = inetAddresses.nextElement();
-
-                if (!ia.isLoopbackAddress()) {                 
-                	System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
-                    localAddress = ia;                  
+                if (!ia.isLinkLocalAddress()) {
+                    if (!ia.isLoopbackAddress()) {
+                        System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
+                        localAddress = ia;
+                    }
                 }
             }
             
@@ -40,11 +41,9 @@ public class NetworkManager {
             while (inetAddresses.hasMoreElements()) {
                 InetAddress ia = inetAddresses.nextElement();
 
-                if (!ia.isLinkLocalAddress()) {
-                    if (!ia.isLoopbackAddress()) {
-                        System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
-                        return ia.getHostAddress();
-                    }
+                if (!ia.isLoopbackAddress()) {
+                    System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
+                    return ia.getHostAddress();
                 }
             }
         } catch (IOException e) {
