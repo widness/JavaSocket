@@ -1,54 +1,50 @@
 package server;
 
-
 import java.io.IOException;
 import java.net.*;
 import controller.DataInput;
 import controller.Clients;
 
-public class AcceptClient implements Runnable {
 
+public class AcceptClient implements Runnable {
     private Clients clients = new Clients();
-    private Socket clientSocketOnServer;
+    private Socket clientSocket;
     private int clientNumber;
     private DataInput dataInput;
-    private String recievedInformations;
+    private String recievedInfo;
+    private String[] clientInfos;
 
-    private String[] client;
 
-    //Constructor
-    public AcceptClient (Socket clientSocketOnServer, int clientNo)
-    {
-        this.clientSocketOnServer = clientSocketOnServer;
+    public AcceptClient (Socket clientSocket, int clientNo) {
+        this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
     }
-    //overwrite the thread run()
+    
+    
     public void run() {
-
         try {
             System.out.println("Client Nr "+clientNumber+ " is connected");
-            System.out.println("Socket is available for connection"+ clientSocketOnServer);
+            System.out.println("Socket is available for connection"+ clientSocket);
 
-            dataInput = new DataInput(clientSocketOnServer);
-            recievedInformations = dataInput.receiveInfoFromClient();
+            dataInput = new DataInput(clientSocket);
+            recievedInfo = dataInput.receiveInfoFromClient();
 
-            System.out.println("he send me: " + recievedInformations);
+            System.out.println("He sends me: " + recievedInfo);
 
-            if(recievedInformations.contains("-")){
-                client = recievedInformations.split("-");
-            } else {
-                throw new IllegalAccessException("String: " + recievedInformations + "doesn't containe -");
-            }
-            if(clients.isClient(client[0])){
-                if(clients.isPwdCorrect(client[0], client[1]))
-                    clients.updateClient(client[0], client[1], client[2], client[3]);
-            } else {
-                clients.addNewClient(client[0], client[1], client[2], client[3]);
-            }
-
-            clientSocketOnServer.close();
+            if (recievedInfo.contains("-")) 
+                clientInfos = recievedInfo.split("-");
+            else 
+                throw new IllegalAccessException("String: " + recievedInfo + "doesn't contain -");
+            
+            if (clients.isClient(clientInfos[0])) {
+                if (clients.isPwdCorrect(clientInfos[0], clientInfos[1]))
+                    clients.updateClient(clientInfos[0], clientInfos[1], clientInfos[2], clientInfos[3]);
+            } else 
+                clients.addNewClient(clientInfos[0], clientInfos[1], clientInfos[2], clientInfos[3]);
+            
+            clientSocket.close();
             Thread.sleep(3000);
-            System.out.println("end of connection to the client " + clientNumber);
+            System.out.println("End of connection to the client " + clientNumber);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -57,5 +53,4 @@ public class AcceptClient implements Runnable {
             e.printStackTrace();
         }
     }
-
 }

@@ -21,7 +21,7 @@ public class FileHandler {
                 line = bufferedReader.readLine();
                 if (line == null) break;
 
-                lineSplitted = line.split(",");
+                lineSplitted = line.split(";");
                 returnList.add(new Client(
                         lineSplitted[0],
                         lineSplitted[1],

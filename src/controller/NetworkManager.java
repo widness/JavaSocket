@@ -5,8 +5,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
-public class NetworkManager {
 
+public class NetworkManager {
     private InetAddress localAddress = null;
 
     public InetAddress getLocalAddress(String interfaceName) {
@@ -19,18 +19,21 @@ public class NetworkManager {
 
                 if (!ia.isLinkLocalAddress()) {
                     if (!ia.isLoopbackAddress()) {
-                        System.out.println(ni.getName() + "->IP: " + ia.getHostAddress());
+                        System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
                         localAddress = ia;
                     }
                 }
             }
+            
             return localAddress;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         return null;
     }
 
+    
     public String getOwnIp(String interfaceName) {
         try {
             NetworkInterface ni = NetworkInterface.getByName(interfaceName);
@@ -41,7 +44,7 @@ public class NetworkManager {
 
                 if (!ia.isLinkLocalAddress()) {
                     if (!ia.isLoopbackAddress()) {
-                        System.out.println(ni.getName() + "->IP: " + ia.getHostAddress());
+                        System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
                         return ia.getHostAddress();
                     }
                 }
@@ -49,6 +52,7 @@ public class NetworkManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         return null;
     }
 }

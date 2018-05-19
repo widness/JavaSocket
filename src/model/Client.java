@@ -47,6 +47,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return pseudo + "," + password + "," + clientIP + "," + clientPort;
+        return pseudo + ";" + password + ";" + clientIP + ";" + clientPort;
     }
 }

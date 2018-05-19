@@ -14,7 +14,7 @@ public class Main {
     	password = scan.nextLine();
 
     	NewClientConnection sc = new NewClientConnection(clientPseudo, password,
-                "192.168.71.105", "wlan1", 45000);
+                "192.168.43.238", "wlan1", 45000);
         sc.connectToServer();
 
     }
