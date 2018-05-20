@@ -14,13 +14,11 @@ public class AcceptClient implements Runnable {
     private String recievedInfo;
     private String[] clientInfos;
 
-
     public AcceptClient (Socket clientSocket, int clientNo) {
         this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
     }
-    
-    
+
     public void run() {
         try {
             System.out.println("Client Nr "+clientNumber+ " is connected");

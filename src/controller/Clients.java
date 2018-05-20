@@ -39,6 +39,7 @@ public class Clients {
                 if (clients.get(i).getPassword().equals(password)) {
                     clients.get(i).setClientIP(clientIP);
                     clients.get(i).setClientPort(clientPort);
+                    fileHandler.updateElement(clients.get(i));
                 }
             }
         
