@@ -1,10 +1,14 @@
 package client;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import javax.swing.filechooser.FileSystemView;
+
 import controller.DataOutput;
 import controller.NetworkManager;
 
@@ -30,6 +34,7 @@ public class NewClientConnection {
 		this.port = port;
 	}
 	
+	
 	public void connectToServer() {
 		try {
 			serverAddress = InetAddress.getByName(serverIP);
@@ -45,6 +50,9 @@ public class NewClientConnection {
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port));
 
+			String folder = createRepository();
+			shareRepository(folder);
+			
 			System.out.println("Now dying...");
 			
 			clientSocket.close();
@@ -53,5 +61,36 @@ public class NewClientConnection {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	private String createRepository() {
+		File home = FileSystemView.getFileSystemView().getHomeDirectory();
+		String path = home.getAbsolutePath();
+		
+		File folder = new File(path + "/JavaSocket");
+		if (!folder.exists())
+			folder.mkdir();
+		
+		return (path + "/JavaSocket");
+	}
+	
+	
+	private void shareRepository(String path) {
+		File folder = new File(path);
+		File[] listFiles = folder.listFiles();
+		
+		
+		
+		
+		
+		
+		
+//		FileInputStream in = new FileInputStream(fichier);
+//		BufferedInputStream bin = new BufferedInputStream(in);
+//		DataInputStream dbin = new DataInputStream(bin);
+//		System.out.println(dbin.readInt());
+//		dbin.close();
+		
 	}
 }
