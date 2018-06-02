@@ -49,10 +49,6 @@ public class NewClientConnection {
 			
 			System.out.println("I got the connexion to " + serverAddress);
 			
-			// Give login information to the server
-			dataOutput = new DataOutput(clientSocket);
-			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port));
-
 			if (createRepository()) {
 				System.out.println("Please add the files you want to share in the 'JavaSocket' repository on your desktop...");
 				System.out.println("When you're ready, press the ENTER key.");				
@@ -61,6 +57,17 @@ public class NewClientConnection {
 			
 			FileHandler fileHandler = new FileHandler();
 			fileHandler.shareRepository(folderPath);
+			
+			
+			// Give login information to the server
+			dataOutput = new DataOutput(clientSocket);
+			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port));
+			
+			
+			// Give list of files to the server
+//			File[] list = fileHandler.getListFiles();
+//			dataOutput.giveFileListToServer(list);
+
 			
 			System.out.println("Now dying...");
 			

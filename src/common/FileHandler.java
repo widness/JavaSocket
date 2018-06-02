@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class FileHandler {
     public static final String PATH = "clientList.txt";
+    private File[] listFiles;
     
     public ArrayList<Client> readElements() {
         FileReader reader;
@@ -113,10 +114,15 @@ public class FileHandler {
         }
     }
     
+    
+    public File[] getListFiles() {
+    	return listFiles;
+    }
+    
 	
 	public void shareRepository(String path) throws IOException {
 		File folder = new File(path);
-		File[] listFiles = folder.listFiles();
+		listFiles = folder.listFiles();
 				
 		FileOutputStream fout = new FileOutputStream("fileList.ser");
 		ObjectOutputStream oos = new ObjectOutputStream(fout);
@@ -131,6 +137,7 @@ public class FileHandler {
 		FileInputStream fin = new FileInputStream("fileList.ser");
 		ObjectInputStream ois = new ObjectInputStream(fin);
 		listFiles = (ArrayList<File>) ois.readObject();
+		ois.close();
 		
 		return listFiles;
 	}	

@@ -14,7 +14,7 @@ public class Main {
     	System.out.print("What's your password? ");
     	password = scan.nextLine();
 
-    	NewClientConnection sc = new NewClientConnection(clientPseudo, password, "10.91.129.20", "wlan1", 45000);
+    	NewClientConnection sc = new NewClientConnection(clientPseudo, password, "192.168.43.238", "wlan1", 45000);
         sc.connectToServer();
     }
 }
