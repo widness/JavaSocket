@@ -1,4 +1,4 @@
-package controller;
+package Common;
 
 import java.io.IOException;
 import java.io.PrintWriter;

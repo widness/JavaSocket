@@ -1,8 +1,7 @@
-package controller;
+package Common;
 
 import model.Client;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 
