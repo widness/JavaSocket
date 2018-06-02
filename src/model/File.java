@@ -2,30 +2,25 @@ package model;
 
 
 public class File {
-    private String owner;
+    private String ip;
     private String name;
 
-    
-    public File(String owner, String name){
-        this.owner = owner;
+    public File(String ip, String name){
+        this.ip = ip;
         this.name = name; 
     }
 
-    
-    public String getOwner() {
-        return owner;
+    public String getIp() {
+        return ip;
     }
 
-    
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    
     public String getName() {
         return name;
     }
-
     
     public void setName(String name) {
         this.name = name;

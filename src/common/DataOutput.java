@@ -42,4 +42,8 @@ public class DataOutput {
 			e.printStackTrace();
 		}
 	}
+
+	public void giveClientList(Clients clients, Files files) {
+
+    }
 }
