@@ -44,6 +44,7 @@ public class DataOutput {
 	}
 
 	public void giveClientList(Clients clients, Files files) {
-
+        FileToSend fts = new FileToSend(clients, files);
+        // TODO: Write next
     }
 }

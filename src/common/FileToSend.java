@@ -6,19 +6,19 @@ import model.File;
 import java.util.ArrayList;
 
 public class FileToSend {
-    private ArrayList<Client> clients;
-    private ArrayList<File> files;
+    private Clients clients;
+    private Files files;
 
-    public FileToSend(ArrayList<Client>clients, ArrayList<File>files){
+    public FileToSend(Clients clients, Files files){
         this.clients = clients;
         this.files = files;
     }
 
-    public ArrayList<Client> getClients(){
+    public Clients getClients(){
         return this.clients;
     }
 
-    public ArrayList<File> getFiles(){
+    public Files getFiles(){
         return this.files;
     }
 }
