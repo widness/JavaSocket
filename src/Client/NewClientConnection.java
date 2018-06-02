@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import javax.swing.filechooser.FileSystemView;
 
 import common.DataOutput;
+import common.FileHandler;
 import common.NetworkManager;
 
 
@@ -24,6 +25,7 @@ public class NewClientConnection {
 	private DataOutput dataOutput;
 	private String localIP;
 	private int port;
+	private String folderPath;
 	
 	
 	public NewClientConnection(String clientPseudo, String password, String serverIP, String networkInterface, int port) {
@@ -32,6 +34,7 @@ public class NewClientConnection {
         this.serverIP = serverIP;
 		this.localIP = networkManager.getOwnIp(networkInterface);
 		this.port = port;
+		this.folderPath = getHomePath();
 	}
 	
 	
@@ -50,8 +53,14 @@ public class NewClientConnection {
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port));
 
-			String folder = createRepository();
-			shareRepository(folder);
+			if (createRepository()) {
+				System.out.println("Please add the files you want to share in the 'JavaSocket' repository on your desktop...");
+				System.out.println("When you're ready, press the ENTER key.");				
+				System.in.read();
+			}
+			
+			FileHandler fileHandler = new FileHandler();
+			fileHandler.shareRepository(folderPath);
 			
 			System.out.println("Now dying...");
 			
@@ -64,33 +73,24 @@ public class NewClientConnection {
 	}
 	
 	
-	private String createRepository() {
+	private String getHomePath() {
 		File home = FileSystemView.getFileSystemView().getHomeDirectory();
-		String path = home.getAbsolutePath();
+		String path = home.getAbsolutePath() + "/JavaSocket";
+				
+		return path;
+	}
+	
+	
+	private boolean createRepository() {			
+		File folder = new File(folderPath);
 		
-		File folder = new File(path + "/JavaSocket");
-		if (!folder.exists())
+		if (!folder.exists()) {
 			folder.mkdir();
+			return true;
+		}
 		
-		return (path + "/JavaSocket");
+		return false;
 	}
 	
-	
-	private void shareRepository(String path) {
-		File folder = new File(path);
-		File[] listFiles = folder.listFiles();
 		
-		
-		
-		
-		
-		
-		
-//		FileInputStream in = new FileInputStream(fichier);
-//		BufferedInputStream bin = new BufferedInputStream(in);
-//		DataInputStream dbin = new DataInputStream(bin);
-//		System.out.println(dbin.readInt());
-//		dbin.close();
-		
-	}
 }

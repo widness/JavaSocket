@@ -3,17 +3,18 @@ package common;
 import model.Client;
 
 import java.io.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 
 
 public class FileHandler {
     public static final String PATH = "clientList.txt";
     
-    public LinkedList<Client> readElements() {
+    public ArrayList<Client> readElements() {
         FileReader reader;
         String line = null;
         String[] lineSplitted = null;
-        LinkedList<Client> returnList = new LinkedList<Client>();
+        ArrayList<Client> returnList = new ArrayList<Client>();
 
         try {
             reader = new FileReader(new File(PATH));
@@ -83,7 +84,8 @@ public class FileHandler {
             br.close();
 
             //Delete the original file
-            //FIXEME: isn't working
+            System.gc();
+            
             if (!inFile.delete()) {
                 System.out.println("Could not delete file");
                 return;
@@ -104,10 +106,32 @@ public class FileHandler {
         }
     }
 
-    public static void readAll(LinkedList<Client> elements) {
+    public static void readAll(ArrayList<Client> elements) {
         System.out.println("Read file: ");
         for (Client element: elements) {
             System.out.println(element);
         }
     }
+    
+	
+	public void shareRepository(String path) throws IOException {
+		File folder = new File(path);
+		File[] listFiles = folder.listFiles();
+				
+		FileOutputStream fout = new FileOutputStream("fileList.ser");
+		ObjectOutputStream oos = new ObjectOutputStream(fout);
+		oos.writeObject(listFiles);
+		oos.close();
+	}
+	
+	
+	public ArrayList<File> retrieveRepository(String path) throws IOException, ClassNotFoundException {
+		ArrayList<File> listFiles;
+		
+		FileInputStream fin = new FileInputStream("fileList.ser");
+		ObjectInputStream ois = new ObjectInputStream(fin);
+		listFiles = (ArrayList<File>) ois.readObject();
+		
+		return listFiles;
+	}	
 }

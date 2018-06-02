@@ -1,19 +1,20 @@
 package common;
 
+import java.util.ArrayList;
+
 import model.Client;
 
-import java.util.LinkedList;
 
 
 public class Clients {
-    private LinkedList<Client> clients;
+    private ArrayList<Client> clients;
     private FileHandler fileHandler = new FileHandler();
 
     public Clients(){
         clients = fileHandler.readElements();
 
         if (clients == null) {
-        	clients = new LinkedList<Client>();
+        	clients = new ArrayList<Client>();
             System.out.println("I've created a brend new client list");          
         }
     }
