@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ffa840c6-8c5a-4a9d-bc0a-433d27df0031" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Controller/Clients.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Controller/Clients.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/server/AcceptClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/server/AcceptClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Clients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Clients.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/AcceptClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/AcceptClient.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -83,7 +77,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="width" value="1110" />
     <option name="height" value="1040" />
@@ -97,8 +91,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -121,7 +115,7 @@
               <item name="JavaSocket" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaSocket" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="Common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaSocket" type="b2602c69:ProjectViewProjectNode" />
@@ -247,18 +241,18 @@
       <option name="presentableId" value="Default" />
       <updated>1524301840263</updated>
       <workItem from="1526828163505" duration="2410000" />
+      <workItem from="1527921415662" duration="963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3883000" />
+    <option name="totallyTimeSpent" value="4846000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3296582" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
@@ -270,7 +264,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11783854" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14127605" />
       <window_info anchor="right" id="Database" order="8" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -284,6 +278,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32855567" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3296582" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +334,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Files.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/Files.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="24" />
@@ -356,7 +351,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Clients.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/Clients.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
@@ -391,7 +386,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Clients.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/Clients.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
@@ -524,7 +519,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ImportedElement.java" />
-    <entry file="file://$PROJECT_DIR$/src/controller/Files.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/Files.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
@@ -551,7 +546,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/NetworkManager.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/NetworkManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="46" column="17" lean-forward="true" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
@@ -571,7 +566,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/DataInput.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/DataInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
@@ -581,7 +576,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/DataOutput.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/DataOutput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
@@ -602,7 +597,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/FileHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/FileHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
@@ -637,7 +632,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Clients.java">
+    <entry file="file://$PROJECT_DIR$/src/Common/Clients.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-230">
           <caret line="36" column="25" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="25" />
