@@ -9,8 +9,8 @@ import java.net.UnknownHostException;
 
 import javax.swing.filechooser.FileSystemView;
 
-import Common.DataOutput;
-import Common.NetworkManager;
+import common.DataOutput;
+import common.NetworkManager;
 
 
 public class NewClientConnection {

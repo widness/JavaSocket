@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Common.NetworkManager;
+import common.NetworkManager;
 
 
 public class NewServerConnection {

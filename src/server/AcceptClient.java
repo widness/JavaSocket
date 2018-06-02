@@ -2,8 +2,8 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
-import Common.DataInput;
-import Common.Clients;
+import common.DataInput;
+import common.Clients;
 
 
 public class AcceptClient implements Runnable {
