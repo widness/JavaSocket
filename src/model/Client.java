@@ -21,7 +21,7 @@ public class Client implements Serializable {
     }
 
     public void addFile(String fileName) {
-        this.files.add(fileName);
+        files.add(fileName);
     }
 
     public ArrayList<String> getFile() {
