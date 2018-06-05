@@ -2,15 +2,13 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.ArrayList;
 
 import common.*;
-import model.Client;
+import common.Client;
 
 
 public class AcceptClient implements Runnable {
     private Clients clients;
-    private Files files = new Files();
     private Socket clientSocket, clientSocket2;
     private FileHandler fileHandler;
     private int clientNumber;
@@ -22,7 +20,6 @@ public class AcceptClient implements Runnable {
 
     public AcceptClient (Socket clientSocket, int clientNo) throws Exception {
         this.clientSocket = clientSocket;
-        this.clientSocket2 = clientSocket;
         this.clientNumber = clientNo;
 
         this.fileHandler = new FileHandler();
@@ -42,7 +39,6 @@ public class AcceptClient implements Runnable {
 
             //recievedInfo = dataInput.receiveArrayListFromClient();
             Client client = dataInput.receiveClient();
-            clientSocket.close();
 
             //0: Pseudo | 1: Password | 2: clientIP | 3: Port | 4: fileList
             if (clients.isClient(client.getPseudo())) {
@@ -57,14 +53,14 @@ public class AcceptClient implements Runnable {
 
             clientAddress = InetAddress.getByName(client.getClientIP());
 
-            dataOutput = new DataOutput(clientSocket2);
+            dataOutput = new DataOutput(clientSocket);
 
             dataOutput.sendObject(clients);
 
             Thread.sleep(3000);
             System.out.println("End of connection to the client " + clientNumber);
 
-            clientSocket2.close();
+            clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

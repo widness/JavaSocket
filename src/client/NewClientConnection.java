@@ -6,11 +6,12 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.filechooser.FileSystemView;
 
 import common.*;
-import model.Client;
 
 
 public class NewClientConnection {
@@ -66,7 +67,28 @@ public class NewClientConnection {
             dataInput = new DataInput(clientSocket);
             Clients clients = dataInput.receiveClients();
 
-            System.out.println(clients.getClients().get(0).getPseudo());
+            ArrayList<String> choicesList = new ArrayList<String>();
+            ArrayList<String> ipList = new ArrayList<String>();
+            ArrayList<String> portList = new ArrayList<String>();
+
+            // Get all list and save it into the choicesList | ipList and portList
+            for(Client c: clients.getClients()) {
+                for(String s: c.getFiles()) {
+                    choicesList.add(s);
+                    ipList.add(c.getClientIP());
+                    portList.add(c.getClientPort());
+                }
+            }
+
+            // Print the choicesList
+            for(int i = 0; i < choicesList.size(); i++) {
+                System.out.println(i + ": " + choicesList.get(i));
+            }
+
+            System.out.println("Wich list did you want to download?");
+            /* TODO: Faire le scanner (aller avec l'index et envoyer tout les objet en même temps
+                Ex: si il choisis 3: methodToGetFile(choiceList.get(3), ipList.get(3) portList.get(3)) */
+
 
 			System.out.println("Now dying...");
 			

@@ -3,8 +3,6 @@ package common;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import model.Client;
-
 public class Clients implements Serializable {
     private static final long serialVersionUID = 5832063776451490808L;
     private ArrayList<Client> clients = new ArrayList<Client>();
@@ -68,7 +66,7 @@ public class Clients implements Serializable {
         }
 
     }
-    
+
     public int size() {
         return clients.size();
     }

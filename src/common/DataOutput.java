@@ -1,13 +1,9 @@
 package common;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-
-import model.Client;
 
 
 public class DataOutput {
@@ -33,8 +29,6 @@ public class DataOutput {
         try {
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
             objectOutput.writeObject(objectToSend);
-
-            objectOutput.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,11 +1,7 @@
 package common;
 
-import model.Client;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
 
 
 public class FileHandler {
@@ -16,7 +12,6 @@ public class FileHandler {
     public FileHandler() {
         this.f = new File("clientList.ser");
     }
-
 
     public Clients readElements(){
 
