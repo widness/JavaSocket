@@ -2,6 +2,8 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+
 import common.DataInput;
 import common.Clients;
 import common.Files;
@@ -14,7 +16,7 @@ public class AcceptClient implements Runnable {
     private Socket clientSocket;
     private int clientNumber;
     private DataInput dataInput;
-    private String recievedInfo;
+    private ArrayList<Object> recievedInfos;
     private String[] clientInfos;
     private InetAddress clientAddress;
     private DataOutput dataOutput;
@@ -32,16 +34,7 @@ public class AcceptClient implements Runnable {
             dataInput = new DataInput(clientSocket);
 
             //recievedInfo = dataInput.receiveArrayListFromClient();
-            dataInput.receiveArrayListFromClient();
-
-            System.out.println("He sends me: " + recievedInfo);
-
-            if (recievedInfo.contains("-")) {
-                clientInfos = recievedInfo.split("-");
-            }
-            else {
-                throw new IllegalAccessException("String: " + recievedInfo + "doesn't contain -");
-            }
+            recievedInfos = dataInput.receiveArrayListFromClient();
 
             //0: Pseudo | 1: Password | 2: clientIP | 3: Port | 4: fileList
             if (clients.isClient(clientInfos[0])) {
@@ -61,8 +54,6 @@ public class AcceptClient implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }

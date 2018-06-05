@@ -1,11 +1,17 @@
 package model;
 
 
-public class Client {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Client implements Serializable {
+    private static final long serialVersionUID = 5950169519310163575L;
+
     private String pseudo;
     private String password;
     private String clientIP;
     private String clientPort;
+    private ArrayList<String> files;
 
     public Client(String pseudo, String password, String clientIP, String clientPort){
         this.pseudo = pseudo;
@@ -14,6 +20,13 @@ public class Client {
         this.clientPort = clientPort;
     }
 
+    public void addFile(String fileName) {
+        this.files.add(fileName);
+    }
+
+    public ArrayList<String> getFile() {
+        return this.files;
+    }
     
     public String getPseudo() {
         return pseudo;
