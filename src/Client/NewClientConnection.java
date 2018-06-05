@@ -9,9 +9,8 @@ import java.net.UnknownHostException;
 
 import javax.swing.filechooser.FileSystemView;
 
-import common.DataOutput;
-import common.FileHandler;
-import common.NetworkManager;
+import common.*;
+import model.Client;
 
 
 public class NewClientConnection {
@@ -21,6 +20,7 @@ public class NewClientConnection {
 	private String serverIP;
 	private String clientPseudo;
 	private String password;
+    private DataInput dataInput;
 	private PrintWriter pout;
 	private DataOutput dataOutput;
 	private String localIP;
@@ -62,13 +62,12 @@ public class NewClientConnection {
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port), filesList);
-			
-			
-			// Give list of files to the server
-//			File[] list = fileHandler.getListFiles();
-//			dataOutput.giveFileListToServer(list);
 
-			
+            dataInput = new DataInput(clientSocket);
+            Clients clients = dataInput.receiveClients();
+
+            System.out.println(clients.getClients().get(0).getPseudo());
+
 			System.out.println("Now dying...");
 			
 			clientSocket.close();

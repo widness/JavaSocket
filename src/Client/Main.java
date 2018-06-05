@@ -26,7 +26,6 @@ public class Main {
     	String ip = lineSplitted[0];
     	String name = lineSplitted[1];
     	String port = lineSplitted[2];
-
     	
 //    	NewClientConnection sc = new NewClientConnection(clientPseudo, password, "192.168.43.238", "wlan1", 45000);
     	NewClientConnection sc = new NewClientConnection(clientPseudo, password, ip, name, Integer.parseInt(port));

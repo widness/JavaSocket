@@ -48,4 +48,21 @@ public class DataInput {
         }
         return null;
     }
+
+    public Clients receiveClients() {
+        try {
+            ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+            try {
+                Clients clients = (Clients) objectInput.readObject();
+                return clients;
+            } catch (ClassNotFoundException e) {
+                System.out.println("The title list has not come from the server");
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            System.out.println("The socket for reading the object has problem");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

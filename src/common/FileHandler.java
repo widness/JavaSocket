@@ -9,40 +9,45 @@ import java.util.List;
 
 
 public class FileHandler {
-    public static final String PATH = "clientList.txt";
     private File[] listFiles;
     private String[] list;
-    
-    public Clients readElements() {
-        try {
+    private File f;
 
-            FileInputStream fis = new FileInputStream("clientList.ser");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Clients clients = (Clients) ois.readObject();
-            ois.close();
-
-            return clients;
-        } catch (FileNotFoundException e) {
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public FileHandler() {
+        this.f = new File("clientList.ser");
     }
 
-    public void writeElement (Clients clients) {
-        try{
-            FileOutputStream fos = new FileOutputStream("clientList.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(clients);
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+    public Clients readElements(){
+
+        Clients clients = new Clients();
+
+        if (f.isFile() && f.canRead()) {
+            try {
+                FileInputStream fis = new FileInputStream(f);
+                try {
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    clients = (Clients) ois.readObject();
+                    fis.close();
+                    ois.close();
+                    return clients;
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println("New clientList.ser created");
+        return clients;
     }
+
+    public void writeElement (Clients clients) throws Exception{
+        FileOutputStream fos = new FileOutputStream("clientList.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(clients);
+        oos.close();
+}
 
     public static void readAll(ArrayList<Client> elements) {
         System.out.println("Read file: ");
