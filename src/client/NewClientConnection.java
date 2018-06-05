@@ -59,7 +59,6 @@ public class NewClientConnection {
 			fileHandler.retrieveListFiles(folderPath);
 			String[] filesList = fileHandler.getListFiles();
 			
-			
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port), filesList);

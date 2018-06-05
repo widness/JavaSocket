@@ -11,7 +11,7 @@ public class Client implements Serializable {
     private String password;
     private String clientIP;
     private String clientPort;
-    private ArrayList<String> files;
+    private ArrayList<String> files = new ArrayList<String>();
 
     public Client(String pseudo, String password, String clientIP, String clientPort){
         this.pseudo = pseudo;
