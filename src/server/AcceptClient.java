@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 
-import common.DataInput;
-import common.Clients;
-import common.Files;
-import common.DataOutput;
+import common.*;
 import model.Client;
 
 
@@ -15,6 +12,7 @@ public class AcceptClient implements Runnable {
     private Clients clients = new Clients();
     private Files files = new Files();
     private Socket clientSocket;
+    private FileHandler fileHandler;
     private int clientNumber;
     private DataInput dataInput;
     private Client recievedInfos;
@@ -41,9 +39,11 @@ public class AcceptClient implements Runnable {
             if (clients.isClient(clientInfos[0])) {
                 if (clients.isPwdCorrect(clientInfos[0], clientInfos[1])) {
                     clients.updateClient(clientInfos[0], clientInfos[1], clientInfos[2], clientInfos[3]);
+                    fileHandler.writeElement(clients);
                 }
             } else {
                 clients.addNewClient(clientInfos[0], clientInfos[1], clientInfos[2], clientInfos[3]);
+                fileHandler.writeElement(clients);
             }
 
             clientAddress = InetAddress.getByName(clientInfos[2]);

@@ -1,10 +1,12 @@
 package common;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.Client;
 
-public class Clients {
+public class Clients implements Serializable {
+    private static final long serialVersionUID = 5832063776451490808L;
     private ArrayList<Client> clients;
     private FileHandler fileHandler = new FileHandler();
 
@@ -23,7 +25,6 @@ public class Clients {
         if (!this.isClient(pseudo)) {
             this.clients.add(newClient);
             System.out.println("New client created!");
-            fileHandler.writeElement(newClient);
             return true;
         }
 
@@ -37,7 +38,7 @@ public class Clients {
                 if (clients.get(i).getPassword().equals(password)) {
                     clients.get(i).setClientIP(clientIP);
                     clients.get(i).setClientPort(clientPort);
-                    fileHandler.updateElement(clients.get(i));
+                    return true;
                 }
             }
         
