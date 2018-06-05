@@ -1,5 +1,7 @@
 package common;
 
+import model.Client;
+
 import java.io.*;
 import java.net.Socket;
 import java.sql.SQLOutput;
@@ -30,23 +32,17 @@ public class DataInput {
 		return null;
 	}
 
-    public ArrayList<Object> receiveArrayListFromClient() {
+    public void receiveArrayListFromClient() {
         try {
             ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
             try {
-                Object object = objectInput.readObject();
-                ArrayList<Object> receivedArray =  (ArrayList<Object>) object;
+                Client client = (Client) objectInput.readObject();
 
-                String test[];
-                test = (String[])receivedArray.get(4);
-                System.out.println(test[0]);
-
-                for (int i = 0; i < receivedArray.size(); i++) {
-                   System.out.println((String)receivedArray.get(i));
+                System.out.println(client.getPseudo());
+                ArrayList<String> files = client.getFile();
+                for (int i = 0; i < files.size(); i++) {
+                    files.get(i);
                 }
-
-                return receivedArray;
-
             } catch (ClassNotFoundException e) {
                 System.out.println("The title list has not come from the server");
                 e.printStackTrace();
@@ -55,6 +51,6 @@ public class DataInput {
             System.out.println("The socket for reading the object has problem");
             e.printStackTrace();
         }
-        return null;
+
     }
 }
