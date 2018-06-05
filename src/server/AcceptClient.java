@@ -9,7 +9,7 @@ import model.Client;
 
 
 public class AcceptClient implements Runnable {
-    private Clients clients = new Clients();
+    private Clients clients;
     private Files files = new Files();
     private Socket clientSocket;
     private FileHandler fileHandler;
@@ -23,6 +23,7 @@ public class AcceptClient implements Runnable {
     public AcceptClient (Socket clientSocket, int clientNo) {
         this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
+        this.clients = fileHandler.readElements();
     }
 
     public void run() {

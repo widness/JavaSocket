@@ -10,14 +10,7 @@ public class Clients implements Serializable {
     private ArrayList<Client> clients;
     private FileHandler fileHandler = new FileHandler();
 
-    public Clients(){
-        clients = fileHandler.readElements();
-
-        if (clients == null) {
-        	clients = new ArrayList<Client>();
-            System.out.println("I've created a brend new client list");          
-        }
-    }
+    public Clients(){}
     
     public boolean addNewClient(String pseudo, String password, String clientIP, String clientPort) {
         Client newClient = new Client(pseudo, password,  clientIP, clientPort);
