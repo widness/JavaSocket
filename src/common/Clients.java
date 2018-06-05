@@ -10,12 +10,14 @@ public class Clients implements Serializable {
     private ArrayList<Client> clients;
     private FileHandler fileHandler = new FileHandler();
 
-    public Clients(){}
-    
-    public boolean addNewClient(String pseudo, String password, String clientIP, String clientPort) {
-        Client newClient = new Client(pseudo, password,  clientIP, clientPort);
+    public Clients(){
 
-        if (!this.isClient(pseudo)) {
+    }
+    
+    public boolean addNewClient(Client client) {
+        Client newClient = client;
+
+        if (!this.isClient(newClient.getPseudo())) {
             this.clients.add(newClient);
             System.out.println("New client created!");
             return true;
@@ -25,12 +27,13 @@ public class Clients implements Serializable {
     }
 
     
-    public boolean updateClient(String pseudo, String password, String clientIP, String clientPort){
+    public boolean updateClient(Client client){
         for (int i = 0; i < clients.size(); i++)
-            if (clients.get(i).getPseudo().equalsIgnoreCase(pseudo)) {
-                if (clients.get(i).getPassword().equals(password)) {
-                    clients.get(i).setClientIP(clientIP);
-                    clients.get(i).setClientPort(clientPort);
+            if (clients.get(i).getPseudo().equalsIgnoreCase(client.getPseudo())) {
+                if (clients.get(i).getPassword().equals(client.getPassword())) {
+                    clients.get(i).setClientIP(client.getClientIP());
+                    clients.get(i).setClientPort(client.getClientPort());
+                    clients.get(i).setFiles(client.getFiles());
                     return true;
                 }
             }

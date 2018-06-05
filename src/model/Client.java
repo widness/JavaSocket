@@ -20,11 +20,15 @@ public class Client implements Serializable {
         this.clientPort = clientPort;
     }
 
+    public void setFiles(ArrayList<String> files) {
+        this.files = files;
+    }
+
     public void addFile(String fileName) {
         files.add(fileName);
     }
 
-    public ArrayList<String> getFile() {
+    public ArrayList<String> getFiles() {
         return this.files;
     }
     

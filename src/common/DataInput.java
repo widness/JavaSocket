@@ -32,17 +32,12 @@ public class DataInput {
 		return null;
 	}
 
-    public void receiveArrayListFromClient() {
+    public Client receiveClient() {
         try {
             ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
             try {
                 Client client = (Client) objectInput.readObject();
-
-                System.out.println(client.getPseudo());
-                ArrayList<String> files = client.getFile();
-                for (int i = 0; i < files.size(); i++) {
-                    files.get(i);
-                }
+                return client;
             } catch (ClassNotFoundException e) {
                 System.out.println("The title list has not come from the server");
                 e.printStackTrace();
@@ -51,6 +46,6 @@ public class DataInput {
             System.out.println("The socket for reading the object has problem");
             e.printStackTrace();
         }
-
+        return null;
     }
 }

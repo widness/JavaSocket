@@ -23,7 +23,13 @@ public class AcceptClient implements Runnable {
     public AcceptClient (Socket clientSocket, int clientNo) {
         this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
-        this.clients = fileHandler.readElements();
+        try {
+            this.clients = fileHandler.readElements();
+        } catch (Exception e) {
+            System.out.println("I create a new client list");
+            this.clients = new Clients();
+        }
+
     }
 
     public void run() {
@@ -34,16 +40,16 @@ public class AcceptClient implements Runnable {
             dataInput = new DataInput(clientSocket);
 
             //recievedInfo = dataInput.receiveArrayListFromClient();
-            dataInput.receiveArrayListFromClient();
+            Client client = dataInput.receiveClient();
 
             //0: Pseudo | 1: Password | 2: clientIP | 3: Port | 4: fileList
-            if (clients.isClient(clientInfos[0])) {
-                if (clients.isPwdCorrect(clientInfos[0], clientInfos[1])) {
-                    clients.updateClient(clientInfos[0], clientInfos[1], clientInfos[2], clientInfos[3]);
+            if (clients.isClient(client.getPseudo())) {
+                if (clients.isPwdCorrect(client.getPseudo(), client.getPassword())) {
+                    clients.updateClient(client);
                     fileHandler.writeElement(clients);
                 }
             } else {
-                clients.addNewClient(clientInfos[0], clientInfos[1], clientInfos[2], clientInfos[3]);
+                clients.addNewClient(client);
                 fileHandler.writeElement(clients);
             }
 
