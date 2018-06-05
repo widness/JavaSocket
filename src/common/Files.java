@@ -12,8 +12,8 @@ public class Files {
         files = new ArrayList<>();
     }
 
-    public void addNewFile(String owner, String name) {
-        File newFile = new File(owner, name);
+    public void addNewFile(String ip, String name) {
+        File newFile = new File(ip, name);
 
         if (isFile(newFile))
             this.files.add(newFile);

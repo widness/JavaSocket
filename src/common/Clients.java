@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import model.Client;
 
-
-
 public class Clients {
     private ArrayList<Client> clients;
     private FileHandler fileHandler = new FileHandler();

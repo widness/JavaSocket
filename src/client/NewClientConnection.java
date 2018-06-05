@@ -83,15 +83,16 @@ public class NewClientConnection {
 	private String getHomePath() {
 		File home = FileSystemView.getFileSystemView().getHomeDirectory();
 		String path = home.getAbsolutePath() + "/JavaSocket";
-				
+
 		return path;
 	}
 	
 	
 	private boolean createRepository() {			
 		File folder = new File(folderPath);
-		
+
 		if (!folder.exists()) {
+            System.out.println("I create a new File");
 			folder.mkdir();
 			return true;
 		}
