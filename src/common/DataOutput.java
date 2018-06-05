@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import model.Client;
+
 
 public class DataOutput {
 	private Socket socket;
@@ -18,28 +20,13 @@ public class DataOutput {
 	}
 	
 	
-	public void giveInformationToServer(String clientPseudo, String password, String ip, String port) {
-		ArrayList<Object> list = new ArrayList<>();
+	public void giveInformationToServer(String clientPseudo, String password, String ip, String port, String[] list) {
+		Client me = new Client(clientPseudo, password, ip, port);
 		
-		FileHandler fileHandler = new FileHandler();
-		File[] listFiles = fileHandler.getListFiles();
-		
-		for (int i=0; i<listFiles.length; i++) {
-			System.out.println(listFiles[i]);
+		for (int i=0; i<list.length; i++) {
+			me.addFile(list[i]);
 		}
-		
-		list.add(clientPseudo);
-		list.add(password);
-		list.add(ip);
-		list.add(port);
-		list.add(listFiles);
-		
-		
-		for (int i=0; i<list.size(); i++) {
-			System.out.println((String)list.get(i));
-		}
-		
-		
+				       
 		
 //		String message = clientPseudo + "-" + password + "-" + ip + "-" + port;
 		
@@ -66,7 +53,7 @@ public class DataOutput {
 //			pout.close();
 			
 			ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-            objectOutput.writeObject(list); 
+            objectOutput.writeObject(me); 
             
             objectOutput.close();
 		} catch (IOException e) {

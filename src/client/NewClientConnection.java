@@ -56,12 +56,13 @@ public class NewClientConnection {
 			}
 			
 			FileHandler fileHandler = new FileHandler();
-			fileHandler.shareRepository(folderPath);
+			fileHandler.retrieveListFiles(folderPath);
+			String[] filesList = fileHandler.getListFiles();
 			
 			
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
-			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port));
+			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port), filesList);
 			
 			
 			// Give list of files to the server

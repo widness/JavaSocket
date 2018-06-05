@@ -4,12 +4,14 @@ import model.Client;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 
 public class FileHandler {
     public static final String PATH = "clientList.txt";
     private File[] listFiles;
+    private String[] list;
     
     public ArrayList<Client> readElements() {
         FileReader reader;
@@ -115,15 +117,15 @@ public class FileHandler {
     }
     
     
-    public File[] getListFiles() {
-    	return listFiles;
+    public String[] getListFiles() {
+    	return list;
     }
     
 	
 	public void shareRepository(String path) throws IOException {
 		File folder = new File(path);
 		listFiles = folder.listFiles();
-				
+						
 		FileOutputStream fout = new FileOutputStream("fileList.ser");
 		ObjectOutputStream oos = new ObjectOutputStream(fout);
 		oos.writeObject(listFiles);
@@ -140,5 +142,18 @@ public class FileHandler {
 		ois.close();
 		
 		return listFiles;
-	}	
+	}
+	
+	
+	public void retrieveListFiles(String path) {
+		File folder = new File(path);
+		listFiles = folder.listFiles();
+		
+		String[] list = new String[listFiles.length];
+		for (int i=0; i<listFiles.length; i++) {
+			list[i] = listFiles[i].getName();
+		}
+		
+		this.list = list;
+	}
 }
