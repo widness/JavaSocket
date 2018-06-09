@@ -1,5 +1,6 @@
 package common;
 
+
 public class ClientFile {
     private String name;
     private String ip;
@@ -11,6 +12,9 @@ public class ClientFile {
         this.port = port;
     }
 
+    
+    
+    // TODO: check if methods are used
     public String getName() {
         return name;
     }

@@ -2,25 +2,29 @@ package common;
 
 import java.util.ArrayList;
 
+
 public class ClientFiles {
     private static final long serialVersionUID = 5832163776451490808L;
     private ArrayList<ClientFile> clientFiles = new ArrayList<ClientFile>();
 
     public ClientFiles(){}
 
+    
+    // If the file already exists in list, do nothing!
     public void addFile(ClientFile clientFile) {
-        // If: file already in list -> Do nothing
         if (!this.isFile(clientFile.getName())) {
             this.clientFiles.add(clientFile);
             System.out.println(clientFile.getName() + " added!");
         }
     }
 
+    
+    // Test if the file has already been added to the list
     public boolean isFile(String fileName) {
-        if(!clientFiles.isEmpty()){
+        if (!clientFiles.isEmpty()) {
             for (ClientFile cf: clientFiles) {
                 if (cf.getName().equalsIgnoreCase(fileName)) {
-                    System.out.println("You already choosne this file");
+                    System.out.println("You have already choosen this file.");
                     return true;
                 }
             }

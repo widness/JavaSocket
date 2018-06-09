@@ -22,13 +22,16 @@ public class DataOutput {
         for (int i = 0; i < list.length; i++) {
             me.addFile(list[i]);
         }
-        this.sendObject(me);
+        
+        sendObject(me);
     }
 
+    
     public void sendObject(Object objectToSend) {
         try {
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
             objectOutput.writeObject(objectToSend);
+            objectOutput.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

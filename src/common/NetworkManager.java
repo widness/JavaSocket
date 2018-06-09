@@ -1,7 +1,6 @@
 package common;
 
 import server.AcceptClient;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -13,6 +12,7 @@ import java.util.Enumeration;
 public class NetworkManager {
     private InetAddress localAddress = null;
 
+    
     public InetAddress getLocalAddress(String interfaceName) {
         try {
             NetworkInterface ni = NetworkInterface.getByName(interfaceName);
@@ -46,7 +46,7 @@ public class NetworkManager {
                 InetAddress ia = inetAddresses.nextElement();
 
                 if (!ia.isLoopbackAddress()) {
-                    System.out.println(ni.getName() + " =>   IP: " + ia.getHostAddress());
+                    System.out.println(ni.getName() + " =>   Own IP: " + ia.getHostAddress());
                     return ia.getHostAddress();
                 }
             }
@@ -57,10 +57,11 @@ public class NetworkManager {
         return null;
     }
 
-    // @param: if the server call this function or a client
-    // If the server -> Ctrl password and send a list back
+    
+    // @param: if the server calls this function or a client
+    // If the server -> Check password and send a list back
     // @see: AcceptClient
-    public void startingListening(boolean isServer){
+    public void startingListening(boolean isServer) {
         InetAddress localAddress;
         ServerSocket srvSocket;
         int clientNo = 1;
@@ -84,7 +85,6 @@ public class NetworkManager {
 
                 t.start();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
