@@ -34,7 +34,7 @@ public class Clients implements Serializable {
 
     
     public boolean isClient(String pseudo) {
-        if(!this.clients.isEmpty()){
+        if(!clients.isEmpty()){
             for (Client c: clients) {
                 if (c.getPseudo().equalsIgnoreCase(pseudo)) {
                     System.out.println("This client exists already");

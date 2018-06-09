@@ -1,6 +1,8 @@
 package server;
 
 
+import common.NetworkManager;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,6 +10,7 @@ public class Main {
         System.out.println("Eh.. Hey?!");
         System.out.println("Ok ok, i'm starting the server");
 
-        NewServerConnection sc = new NewServerConnection();
+        NetworkManager netManager = new NetworkManager();
+        netManager.startingListening();
     }
 }

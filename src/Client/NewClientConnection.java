@@ -18,6 +18,7 @@ public class NewClientConnection {
     private NetworkManager networkManager = new NetworkManager();
 	private Socket clientSocket;
 	private InetAddress serverAddress;
+	private InetAddress OtherClientAddress;
 	private String serverIP;
 	private String clientPseudo;
 	private String password;
@@ -27,7 +28,7 @@ public class NewClientConnection {
 	private String localIP;
 	private int port;
 	private String folderPath;
-	
+    private Scanner scan;
 	
 	public NewClientConnection(String clientPseudo, String password, String serverIP, String networkInterface, int port) {
 		this.clientPseudo = clientPseudo;
@@ -36,8 +37,8 @@ public class NewClientConnection {
 		this.localIP = networkManager.getOwnIp(networkInterface);
 		this.port = port;
 		this.folderPath = getHomePath();
+		scan = new Scanner(System.in);
 	}
-	
 	
 	public void connectToServer() {
 		try {
@@ -85,14 +86,32 @@ public class NewClientConnection {
                 System.out.println(i + ": " + choicesList.get(i));
             }
 
-            System.out.println("Wich list did you want to download?");
-            /* TODO: Faire le scanner (aller avec l'index et envoyer tout les objet en même temps
-                Ex: si il choisis 3: methodToGetFile(choiceList.get(3), ipList.get(3) portList.get(3)) */
+            System.out.println("Wich file did you want to download?");
+            System.out.println("Number: choose file");
+            System.out.println("Enter: Validate the choosen file");
+            System.out.println("-1: Send the request");
 
+            ClientFiles choosenList = new ClientFiles();
+            ClientFile targetedFile;
+            int fileNumber = 0;
+            // Choose white file index and add it too the list to send
+            while(fileNumber >= 0){
+                fileNumber = this.scan.nextInt();
 
-			System.out.println("Now dying...");
-			
-			clientSocket.close();
+                if(fileNumber >= 0){
+                    try{
+                        targetedFile = new ClientFile(choicesList.get(fileNumber),
+                                ipList.get(fileNumber),
+                                portList.get(fileNumber));
+                        choosenList.addFile(targetedFile);
+                    } catch (ArrayIndexOutOfBoundsException e) { // Choosen a to big number
+                        System.out.println("Couldn't find the file, try again");
+                    }
+                }
+
+              }
+            System.out.println("I'm disconnecting from the server.");
+            clientSocket.close();
 		} catch(UnknownHostException e) {
 			e.printStackTrace();			 
 		} catch(IOException e) {
