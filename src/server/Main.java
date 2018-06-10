@@ -10,6 +10,6 @@ public class Main {
         System.out.println("Ok ok, i'm starting the server.");
 
         NetworkManager netManager = new NetworkManager();
-        netManager.startingListening();
+        netManager.startingListening(true);
     }
 }

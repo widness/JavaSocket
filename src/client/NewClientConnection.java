@@ -6,9 +6,14 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.filechooser.FileSystemView;
+import org.json.JSONException;
+import org.json.JSONObject;
 import common.*;
 
 
@@ -72,16 +77,22 @@ public class NewClientConnection {
 
             // Get the list of clients and save it into the choicesList, ipList and portList (at same time)
             for (Client c: clients.getClients()) {
-                for (String s: c.getFiles()) {
-                    choicesList.add(s);
-                    ipList.add(c.getClientIP());
-                    portList.add(c.getClientPort());
-                }
+            	//if (!c.getClientIP().equals(localIP)) {
+                    for (String s: c.getFiles()) {
+                        choicesList.add(s);
+                        ipList.add(c.getClientIP());
+                        portList.add(c.getClientPort());
+                    }
+            	//}
             }
 
             // Print the choicesList
             for (int i = 0; i < choicesList.size(); i++) {
-                System.out.println(i + ": " + choicesList.get(i));
+            	int startIndex = choicesList.get(i).lastIndexOf('\\') + 1;
+            	int endIndex = choicesList.get(i).length();
+            	String filename = choicesList.get(i).substring(startIndex, endIndex);
+            	
+                System.out.println(i + ": " + filename);
             }
 
             System.out.println("Which file do you want to download?");
@@ -99,6 +110,8 @@ public class NewClientConnection {
 
                 if (fileNumber >= 0) {
                     try {
+                    	System.out.println(choicesList.get(fileNumber)); 
+                    	
                         targetedFile = new ClientFile(choicesList.get(fileNumber),
                                 ipList.get(fileNumber),
                                 portList.get(fileNumber));
@@ -110,6 +123,52 @@ public class NewClientConnection {
                     }
                 }
              }
+                  
+           
+ 
+            
+            // TODO: are you the host client or the client who wants to download files?
+            // TODO: request for files to the host client
+            ArrayList<ClientFile> test = new ArrayList<ClientFile>();
+            test = choosenList.getClientFiles();
+            
+            for (int i = 0; i < test.size(); i++) {
+            	System.out.println(test.get(i).toString());
+            }
+            
+            
+            // Créer un "File" pour chaque élément de la liste
+            // Convertir les "File" en array de bytes
+            // Transférer ces bytes à l'autre client
+            // L'autre client reconvertit les bytes pour les lire
+            
+            // File{name='C:\Users\Montaine\Desktop\JavaSocket\LEFRIC 3 juillet.jpg', ip='fe80:0:0:0:78d4:e1bc:ec81:d84e%wlan1', port='45000'}
+            
+            try { 
+            	for (ClientFile cf: test) {
+            		JSONObject object = new JSONObject(cf);
+                	
+                	String name = object.getJSONObject("name").toString();
+                	Path path = Paths.get(name);
+                	String ip = object.getJSONObject("ip").toString();
+                	int port = Integer.parseInt(object.getJSONObject("port").toString());
+                	
+                	byte[] data = Files.readAllBytes(path);
+                	System.out.println(data);
+            	}           		
+            } catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            	
+            	
+            	
+            
+
+            
+            
+            
+            
             
             System.out.println("Log out from the server.");
             clientSocket.close();

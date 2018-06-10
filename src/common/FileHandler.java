@@ -82,7 +82,7 @@ public class FileHandler {
 		
 		String[] list = new String[listFiles.length];
 		for (int i = 0; i < listFiles.length; i++) {
-			list[i] = listFiles[i].getName();
+			list[i] = listFiles[i].getPath();
 		}
 		
 		this.list = list;

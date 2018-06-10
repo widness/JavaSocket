@@ -56,6 +56,8 @@ public class AcceptClient implements Runnable {
             dataOutput.sendObject(clients);
 
             Thread.sleep(3000);
+            
+            //TODO: when the client is already connected, this message is still shown...
             System.out.println("End of connection to the client " + clientNumber);
 
             clientSocket.close();
