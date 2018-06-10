@@ -77,7 +77,7 @@ public class NewClientConnection {
 
             // Get the list of clients and save it into the choicesList, ipList and portList (at same time)
             for (Client c: clients.getClients()) {
-            	//if (!c.getClientIP().equals(localIP)) {
+            	//if (!c.getClientIP().equals(localIP)) {			// in comments for testing, don't delete this line !!
                     for (String s: c.getFiles()) {
                         choicesList.add(s);
                         ipList.add(c.getClientIP());
@@ -105,6 +105,7 @@ public class NewClientConnection {
             Scanner scan = new Scanner(System.in);
             
             // Search for a file with the index typed by the client and add it to the list to send
+            // TODO: manage error if we don't type a number (if test?)
             while (fileNumber >= 0) {
                 fileNumber = scan.nextInt();
 
@@ -124,52 +125,50 @@ public class NewClientConnection {
                 }
              }
                   
-           
- 
-            
+                       
             // TODO: are you the host client or the client who wants to download files?
-            // TODO: request for files to the host client
-            ArrayList<ClientFile> test = new ArrayList<ClientFile>();
-            test = choosenList.getClientFiles();
-            
-            for (int i = 0; i < test.size(); i++) {
-            	System.out.println(test.get(i).toString());
-            }
+            // TODO: request for files to the host client          
+            // TODO: manage the ip addresses (what about different files from different clients?
             
             
-            // Créer un "File" pour chaque élément de la liste
-            // Convertir les "File" en array de bytes
-            // Transférer ces bytes à l'autre client
-            // L'autre client reconvertit les bytes pour les lire
-            
-            // File{name='C:\Users\Montaine\Desktop\JavaSocket\LEFRIC 3 juillet.jpg', ip='fe80:0:0:0:78d4:e1bc:ec81:d84e%wlan1', port='45000'}
+            // 
+            ArrayList<ClientFile> files = new ArrayList<ClientFile>();
+            files = choosenList.getClientFiles();
+
+            ArrayList<String> names = new ArrayList<String>();
+            ArrayList<byte[]> bytes = new ArrayList<byte[]>();
             
             try { 
-            	for (ClientFile cf: test) {
+            	for (ClientFile cf: files) {
             		JSONObject object = new JSONObject(cf);
                 	
-                	String name = object.getJSONObject("name").toString();
-                	Path path = Paths.get(name);
-                	String ip = object.getJSONObject("ip").toString();
-                	int port = Integer.parseInt(object.getJSONObject("port").toString());
+                	String name = object.getString("name");
+                	Path path = Paths.get(name);               	
+                	names.add(name);
+                	               	
+                	String ip = object.getString("ip");
+                	int port = object.getInt("port");
                 	
                 	byte[] data = Files.readAllBytes(path);
                 	System.out.println(data);
+                	System.out.println(ip);
+                	System.out.println(port);
+                	
+                	bytes.add(data);
             	}           		
             } catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            	
-            	
-            	
+            
+            
+            
+            // Send the list of names and list of bytes to the other client
+            DownloadFiles dl = new DownloadFiles(names, bytes);
+            dataOutput.sendObject(dl);
+            
+            
             
 
-            
-            
-            
-            
-            
             System.out.println("Log out from the server.");
             clientSocket.close();
             scan.close();
@@ -202,4 +201,5 @@ public class NewClientConnection {
 		
 		return false;
 	}	
+	
 }

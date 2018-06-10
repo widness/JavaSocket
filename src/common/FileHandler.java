@@ -3,6 +3,8 @@ package common;
 import java.io.*;
 import java.util.ArrayList;
 
+import javax.swing.filechooser.FileSystemView;
+
 
 public class FileHandler {
     private File[] listFiles;
@@ -22,7 +24,7 @@ public class FileHandler {
             try {
             	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
                 clients = (Clients) ois.readObject();
-                ois.close();
+                //ois.close();
                 return clients;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -37,7 +39,7 @@ public class FileHandler {
     public void writeElement(Clients clients) throws Exception {
     	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("clientList.ser"));
         oos.writeObject(clients);
-        oos.close();
+        //oos.close();
     }
     
 
@@ -61,7 +63,7 @@ public class FileHandler {
 					
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("fileList.ser"));
 		oos.writeObject(listFiles);
-		oos.close();
+		//oos.close();
 	}
 	
 	
@@ -70,7 +72,7 @@ public class FileHandler {
 		
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("fileList.ser"));
 		listFiles = (ArrayList<File>) ois.readObject();
-		ois.close();
+		//ois.close();
 		
 		return listFiles;
 	}
@@ -86,5 +88,14 @@ public class FileHandler {
 		}
 		
 		this.list = list;
+	}
+	
+	
+	// Retrieve the home path of the client
+	public String getHomePath() {
+		File home = FileSystemView.getFileSystemView().getHomeDirectory();
+		String path = home.getAbsolutePath();
+
+		return path;
 	}
 }

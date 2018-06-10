@@ -55,6 +55,8 @@ public class AcceptClient implements Runnable {
             dataOutput = new DataOutput(clientSocket);
             dataOutput.sendObject(clients);
 
+            dataInput.receiveData();
+            
             Thread.sleep(3000);
             
             //TODO: when the client is already connected, this message is still shown...
