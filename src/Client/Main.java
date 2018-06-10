@@ -52,7 +52,7 @@ public class Main {
         		if (answer.equals("2")) {
         			choice = true;
         			
-        			// Retrieve the list of files frome the server
+        			// Retrieve the list of files from the server
         			sc.getFileList();
         		}
         		else {
