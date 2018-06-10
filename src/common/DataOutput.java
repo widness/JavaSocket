@@ -31,10 +31,8 @@ public class DataOutput {
         try {
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
             objectOutput.writeObject(objectToSend);
-            //objectOutput.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-

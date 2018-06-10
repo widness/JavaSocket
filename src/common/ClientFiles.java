@@ -36,15 +36,5 @@ public class ClientFiles {
     public ArrayList<ClientFile> getClientFiles() {
         return this.clientFiles;
     }
-    
-    
-    // TODO: check if the method works
-    // Send the list of choosen files to the other client
-    //public void sendFile()
-    
-    
-    
-    
-    
-    
+
 }

@@ -58,7 +58,6 @@ public class DataInput {
             
             try {
                 Clients clients = (Clients) objectInput.readObject();
-                //objectInput.close();
                 return clients;
             } catch (ClassNotFoundException e) {
                 System.out.println("The title list has not come from the server.");
@@ -115,6 +114,5 @@ public class DataInput {
 				
 		FileOutputStream fos = new FileOutputStream(path); 
 	    fos.write(item);
-	    fos.close();
 	}
 }

@@ -2,7 +2,6 @@ package common;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import javax.swing.filechooser.FileSystemView;
 
 
@@ -52,9 +51,7 @@ public class FileHandler {
     
     
     // TODO: check if all the methods are used or not
-    public String[] getListFiles() {
-    	return list;
-    }
+
     
 	
 	public void shareRepository(String path) throws IOException {
@@ -78,24 +75,5 @@ public class FileHandler {
 	}
 	
 	
-	public void retrieveListFiles(String path) {
-		File folder = new File(path);
-		listFiles = folder.listFiles();
-		
-		String[] list = new String[listFiles.length];
-		for (int i = 0; i < listFiles.length; i++) {
-			list[i] = listFiles[i].getPath();
-		}
-		
-		this.list = list;
-	}
-	
-	
-	// Retrieve the home path of the client
-	public String getHomePath() {
-		File home = FileSystemView.getFileSystemView().getHomeDirectory();
-		String path = home.getAbsolutePath();
 
-		return path;
-	}
 }

@@ -1,36 +1,33 @@
 package client;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.filechooser.FileSystemView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import common.*;
 
 
 public class NewClientConnection {
     private NetworkManager networkManager = new NetworkManager();
+    private FileHandler fileHandler = new FileHandler();
+    private FileManager fileManager = new FileManager();
 	private Socket clientSocket;
 	private InetAddress serverAddress;
-	private InetAddress otherClientAddress;
 	private String serverIP;
 	private String clientPseudo;
 	private String password;
-    private DataInput dataInput;
-	private PrintWriter pout;
 	private DataOutput dataOutput;
 	private String localIP;
 	private int port;
-	private String folderPath;
+	private String homePath;
+	private DataInput dataInput;
 	
     
 	public NewClientConnection(String clientPseudo, String password, String serverIP, String networkInterface, int port) {
@@ -39,139 +36,39 @@ public class NewClientConnection {
         this.serverIP = serverIP;
 		this.localIP = networkManager.getOwnIp(networkInterface);
 		this.port = port;
-		this.folderPath = getHomePath();
+		this.homePath = fileManager.getHomePath();
 	}
 	
 	
-	public void connectToServer() {
+	// Get the connection to the server
+	public void registerToServer() {
 		try {
 			serverAddress = InetAddress.getByName(serverIP);
-			System.out.println("I get the address of the server: " + serverAddress);
-			
-			// Ask the server to create a new socket
 			clientSocket = new Socket(serverAddress, port);
-			System.out.println(clientSocket);		
 			System.out.println("I got the connexion to " + serverAddress);
 			
-			// Test if the share repository exists and retrieve the files
-			if (createRepository()) {
-				System.out.println("Please add the files you want to share in the 'JavaSocket' repository on your desktop...");
-				System.out.println("When you're ready, press the ENTER key.");				
-				System.in.read();
+			
+			// Test if the share repository exists
+			String folderPath = homePath + "/JavaSocket";
+					
+			if (fileManager.createRepository(folderPath)) {
+				System.out.println("The repository has been created on your desktop.");
 			}
 			
-			FileHandler fileHandler = new FileHandler();
-			fileHandler.retrieveListFiles(folderPath);
-			String[] filesList = fileHandler.getListFiles();
+			
+			// Retrieve the files
+			System.out.println("\nPlease add the files you want to share in the 'JavaSocket' repository on your desktop...");
+			System.out.println("When you're ready, press the ENTER key.");				
+			System.in.read();
+			
+			fileManager.retrieveListFiles(folderPath);
+			String[] filesList = fileManager.getListFiles();
+			
 			
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port), filesList);
-
-            dataInput = new DataInput(clientSocket);
-            Clients clients = dataInput.receiveClients();
-
-            ArrayList<String> choicesList = new ArrayList<String>();
-            ArrayList<String> ipList = new ArrayList<String>();
-            ArrayList<String> portList = new ArrayList<String>();
-
-            // Get the list of clients and save it into the choicesList, ipList and portList (at same time)
-            for (Client c: clients.getClients()) {
-            	//if (!c.getClientIP().equals(localIP)) {			// in comments for testing, don't delete this line !!
-                    for (String s: c.getFiles()) {
-                        choicesList.add(s);
-                        ipList.add(c.getClientIP());
-                        portList.add(c.getClientPort());
-                    }
-            	//}
-            }
-
-            // Print the choicesList
-            for (int i = 0; i < choicesList.size(); i++) {
-            	int startIndex = choicesList.get(i).lastIndexOf('\\') + 1;
-            	int endIndex = choicesList.get(i).length();
-            	String filename = choicesList.get(i).substring(startIndex, endIndex);
-            	
-                System.out.println(i + ": " + filename);
-            }
-
-            System.out.println("Which file do you want to download?");
-            System.out.println("Type the number of the file you want to choose and press ENTER key to validate.");
-            System.out.println("To send your request to the server, type -1 and press ENTER key.");
-
-            ClientFiles choosenList = new ClientFiles();
-            ClientFile targetedFile;
-            int fileNumber = 0;
-            Scanner scan = new Scanner(System.in);
-            
-            // Search for a file with the index typed by the client and add it to the list to send
-            // TODO: manage error if we don't type a number (if test?)
-            while (fileNumber >= 0) {
-                fileNumber = scan.nextInt();
-
-                if (fileNumber >= 0) {
-                    try {
-                    	System.out.println(choicesList.get(fileNumber)); 
-                    	
-                        targetedFile = new ClientFile(choicesList.get(fileNumber),
-                                ipList.get(fileNumber),
-                                portList.get(fileNumber));
-                        
-                        choosenList.addFile(targetedFile);
-                    } catch (ArrayIndexOutOfBoundsException e) { 
-                    	// Too big number
-                        System.out.println("Can't find the file, try again.");
-                    }
-                }
-             }
-                  
-                       
-            // TODO: are you the host client or the client who wants to download files?
-            // TODO: request for files to the host client          
-            // TODO: manage the ip addresses (what about different files from different clients?
-            
-            
-            // 
-            ArrayList<ClientFile> files = new ArrayList<ClientFile>();
-            files = choosenList.getClientFiles();
-
-            ArrayList<String> names = new ArrayList<String>();
-            ArrayList<byte[]> bytes = new ArrayList<byte[]>();
-            
-            try { 
-            	for (ClientFile cf: files) {
-            		JSONObject object = new JSONObject(cf);
-                	
-                	String name = object.getString("name");
-                	Path path = Paths.get(name);               	
-                	names.add(name);
-                	               	
-                	String ip = object.getString("ip");
-                	int port = object.getInt("port");
-                	
-                	byte[] data = Files.readAllBytes(path);
-                	System.out.println(data);
-                	System.out.println(ip);
-                	System.out.println(port);
-                	
-                	bytes.add(data);
-            	}           		
-            } catch (JSONException e) {
-				e.printStackTrace();
-			}
-            
-            
-            
-            // Send the list of names and list of bytes to the other client
-            DownloadFiles dl = new DownloadFiles(names, bytes);
-            dataOutput.sendObject(dl);
-            
-            
-            
-
-            System.out.println("Log out from the server.");
-            clientSocket.close();
-            scan.close();
+			
 		} catch(UnknownHostException e) {
 			e.printStackTrace();			 
 		} catch(IOException e) {
@@ -180,26 +77,150 @@ public class NewClientConnection {
 	}
 	
 	
-	// Retrieve the home path of the client
-	private String getHomePath() {
-		File home = FileSystemView.getFileSystemView().getHomeDirectory();
-		String path = home.getAbsolutePath() + "/JavaSocket";
-
-		return path;
-	}
-	
-	
-	// Method to create a new repository on the desktop
-	private boolean createRepository() {			
-		File folder = new File(folderPath);
-
-		if (!folder.exists()) {
-            System.out.println("I create a new File");
-			folder.mkdir();
-			return true;
+	public void getFileList() {
+		// Retrieve the list of clients and files from the server
+		dataInput = new DataInput(clientSocket);
+		Clients clients = dataInput.receiveClients();
+		
+		ArrayList<String> files = new ArrayList<String>();
+		ArrayList<String> ips = new ArrayList<String>();
+		ArrayList<String> ports = new ArrayList<String>();
+		
+		
+		// Get the list of clients and save it into the files list, IPs list and ports list (at same time)
+		for (Client c: clients.getClients()) {
+			//if (!c.getClientIP().equals(localIP)) {			// in comments for testing, don't delete this line !!
+		        for (String s: c.getFiles()) {
+		            files.add(s);
+		            ips.add(c.getClientIP());
+		            ports.add(c.getClientPort());
+		        }
+			//}
 		}
 		
-		return false;
-	}	
-	
+		
+		// Print the files list
+		for (int i = 0; i < files.size(); i++) {
+			int startIndex = files.get(i).lastIndexOf('\\') + 1;
+			int endIndex = files.get(i).length();
+			String filename = files.get(i).substring(startIndex, endIndex);
+			
+		    System.out.println(i + ": " + filename);
+		}
+		     
+		
+		// Save the client's choice
+		System.out.println("Which file do you want to download?");
+		System.out.println("Type the number of the file you want to choose and press ENTER key to validate.");
+		System.out.println("To send your request to the server, type -1 and press ENTER key.");
+		
+		Scanner scan = new Scanner(System.in);
+		ClientFiles choices = new ClientFiles();
+		ClientFile targetedFile;
+		int fileNumber;
+		boolean request = false;
+		
+		// Search for a file with the index typed by the client and add it to the list of choices            
+		while (request == false) {
+			if (scan.hasNextInt()) {
+			    fileNumber = scan.nextInt();
+			    
+			    if (fileNumber >= 0) {
+			    	try {
+			    		System.out.println(files.get(fileNumber)); 
+		            	
+		                targetedFile = new ClientFile(files.get(fileNumber),
+		                        ips.get(fileNumber),
+		                        ports.get(fileNumber));
+		                
+		                choices.addFile(targetedFile);
+			    	} catch (ArrayIndexOutOfBoundsException e) { 
+		            	// Too big number
+		                System.out.println("Can't find this file, please try again.");
+		            }
+			    }
+			    else {
+			    	request = true;
+			    }
+			}
+			else {
+				System.out.println("Please correct your answer: you can only type numbers.");
+				break;
+			}
+		}
+		
+		
+		// Separate all the different IP addresses
+		ArrayList<ClientFile> choosenFiles = new ArrayList<ClientFile>();
+		choosenFiles = choices.getClientFiles();
+		
+		ArrayList<String> allIP = new ArrayList<String>();
+		
+		try {
+			for (ClientFile cf: choosenFiles) {
+				JSONObject object = new JSONObject(cf);
+				
+				String ip = object.getString("ip");
+				
+				if(!IPexists(ip, allIP)) {
+					allIP.add(ip);
+				}           		
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		
+		// Create a list of files for each IP address
+		for (String ip: allIP) {
+			ArrayList<String> names = new ArrayList<String>();             
+		    int port = 0;
+		    
+		    try {
+		    	for (ClientFile cf: choosenFiles) {
+		    		JSONObject object = new JSONObject(cf);
+		    		String testIP = object.getString("ip");
+		    		
+		    		if (testIP.equals(ip)) {
+		    			port = object.getInt("port");
+		    			
+		    			String name = object.getString("name");           	
+		            	names.add(name);
+		    		}
+		    	}               	
+		    } catch (JSONException e) {
+				e.printStackTrace();
+			}
+		    
+		    
+		    // Request the list of files to the host client
+		    System.out.println(ip);
+		    System.out.println(port);
+		    for(int i=0; i<names.size(); i++) {
+		    	System.out.println(names.get(i));
+		    }
+		    
+		                
+		    /* TODO: new socket for the connection client to client
+		     * => Retrieve the values ip and port for the connection
+		     * => Then send the below list "names" via dataOutput
+		     */
+		    
+		    
+		}
+	}
+
+
+	// Check it the IP already exists in the list
+	private boolean IPexists(String ip, ArrayList<String> allIP) {
+		boolean test = false;
+		
+		for (int i = 0; i < allIP.size(); i++) {
+			if (ip.equals(allIP.get(i))) {
+				test = true;
+			}
+		}
+				
+		return test;
+	}
 }

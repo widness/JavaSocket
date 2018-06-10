@@ -25,34 +25,35 @@ public class Main {
     	String port = lineSplitted[2];
     	
 
-    	// Retrieve client information
+    	// Connect to the server
     	Scanner scan = new Scanner(System.in);
-    	System.out.println("Hello.\nWhat would you like to do?\n"
+    	
+    	System.out.print("Hello.\nWhat's your pseudo? ");
+    	pseudo = scan.nextLine();
+    	System.out.print("What's your password? ");
+    	password = scan.nextLine();
+    	
+    	NewClientConnection sc = new NewClientConnection(pseudo, password, ip, name, Integer.parseInt(port));
+        sc.registerToServer();
+        
+        
+        // 1 : the client want just to register, 2 : the client connects as "guest" and ask for file list
+    	System.out.println("What would you like to do?\n"
     			+ "Type 1 if you want to register or type 2 if you want to ask for file list, then press ENTER key.");
     	
-    	
-    	// 1 : the client want to register, 2 : the client connects as guest and ask for file list
     	answer = scan.nextLine();
     	
     	while(choice == false) {
         	if (answer.equals("1")) {
         		choice = true;
-        		
-            	System.out.print("\nWhat's your pseudo? ");
-            	pseudo = scan.nextLine();
-            	System.out.print("What's your password? ");
-            	password = scan.nextLine();
-            	
-            	// Connect to the server
-            	NewClientConnection sc = new NewClientConnection(pseudo, password, ip, name, Integer.parseInt(port));
-                sc.connectToServer();
+        		// TODO: the client transforms into server
         	}
         	else {
         		if (answer.equals("2")) {
         			choice = true;
         			
-        			// Connect to the server
-        			NewGuestConnection gc = new NewGuestConnection(ip, name, Integer.parseInt(port));
+        			// Retrieve the list of files frome the server
+        			sc.getFileList();
         		}
         		else {
         			System.out.println("Please correct your answer: you can only type 1 or 2.");
