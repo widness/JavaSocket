@@ -26,6 +26,7 @@ public class NewClientConnection {
     private FileHandler fileHandler = new FileHandler();
     private FileManager fileManager = new FileManager();
 	private Socket clientSocket;
+    private Clients clients;
 	private InetAddress serverAddress;
 	private String serverIP;
 	private String clientPseudo;
@@ -86,7 +87,7 @@ public class NewClientConnection {
 	
 	public boolean acceptedByServer() {
         dataInput = new DataInput(clientSocket);
-        Clients clients = dataInput.receiveClients();
+        clients = dataInput.receiveClients();
 
         // Get the list of clients and save it into the files list, IPs list and ports list (at same time)
         for (Client c: clients.getClients()) {
@@ -96,21 +97,19 @@ public class NewClientConnection {
             }
         }
 
+        return true;
+    }
+
+    public void closeSocket(){
         try {
             clientSocket.close();
         } catch (IOException e) {
             System.out.println("couldn't close the socket");
             e.printStackTrace();
         }
-
-        return true;
     }
 	
-	
 	public void getFileList() {
-		// Retrieve the list of clients and files from the server
-		dataInput = new DataInput(clientSocket);
-		Clients clients = dataInput.receiveClients();
 		
 		ArrayList<String> files = new ArrayList<String>();
 		ArrayList<String> ips = new ArrayList<String>();
@@ -118,7 +117,7 @@ public class NewClientConnection {
 		
 		
 		// Get the list of clients and save it into the files list, IPs list and ports list (at same time)
-		for (Client c: clients.getClients()) {
+		for (Client c: this.clients.getClients()) {
 			//if (!c.getClientIP().equals(localIP)) {			// in comments for testing, don't delete this line !!
 		        for (String s: c.getFiles()) {
 		            files.add(s);

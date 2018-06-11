@@ -54,6 +54,7 @@ public class Main {
                     answer = scan.nextLine();
 
                     if (answer.equals("1")) {
+                        sc.closeSocket();
                         choice = true;
 
                         NetworkManager netManager = new NetworkManager();
@@ -65,6 +66,7 @@ public class Main {
 
                             // Retrieve the list of files from the server
                             sc.getFileList();
+                            sc.closeSocket();
                         }
                         else {
                             System.out.println("Please correct your answer: you can only type 1 or 2.");
