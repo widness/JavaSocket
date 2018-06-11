@@ -11,6 +11,7 @@ public class FileManager {
     
     public FileManager() {}
     
+    
     public String[] getListFiles() {
     	return list;
     }

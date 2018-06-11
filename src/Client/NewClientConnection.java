@@ -8,7 +8,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
-import common.*;
+
+import common.Client;
+import common.ClientFile;
+import common.ClientFiles;
+import common.Clients;
+import common.DataInput;
+import common.DataOutput;
+import common.FileHandler;
+import common.FileManager;
+import common.NetworkManager;
+
 
 
 public class NewClientConnection {
