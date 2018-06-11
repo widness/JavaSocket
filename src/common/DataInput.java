@@ -72,8 +72,28 @@ public class DataInput {
     }
     
     
+    public ArrayList<String> receiveList() {
+    	try {
+    		ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+    		
+    		try {
+    			ArrayList<String> list = (ArrayList<String>) objectInput.readObject();        		
+        		return list;
+    		} catch (ClassNotFoundException e) {
+                System.out.println("The title list has not come from the server.");
+                e.printStackTrace();
+            }	
+    	} catch (IOException e) {
+                System.out.println("The socket for reading the object has problem.");
+                e.printStackTrace();
+    	}
+    	
+    	return null;
+    }
+
+
     // 0 : names of the files, 1 : files converted into bytes
-    public void receiveData() {
+    public void receiveData(String path) {
     	try {
     		ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
     		
@@ -89,7 +109,7 @@ public class DataInput {
     				
     				name = retrieveFileName(name);
     				
-    				readBytes(name, item);
+    				readBytes(path, item);
     			}
     		} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -109,9 +129,7 @@ public class DataInput {
 	}
 
 
-	private void readBytes(String name, byte[] item) throws IOException {
-		String path = "C:\\Users\\Montaine\\Desktop\\" + name;
-				
+	private void readBytes(String path, byte[] item) throws IOException {		
 		FileOutputStream fos = new FileOutputStream(path); 
 	    fos.write(item);
 	}

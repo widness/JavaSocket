@@ -77,7 +77,7 @@ public class NetworkManager {
                 srvSocket = new ServerSocket(45001, 2, localAddress);
             }
 
-            System.out.println("Listening to Port :" + srvSocket.getLocalPort());
+            System.out.println("Listening to Port : " + srvSocket.getLocalPort());
 
             //Wait for a client connection
             while(true) {

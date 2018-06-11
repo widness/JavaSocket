@@ -83,6 +83,7 @@ public class NewClientConnection {
 		}
 	}
 
+	
 	public boolean acceptedByServer() {
         dataInput = new DataInput(clientSocket);
         Clients clients = dataInput.receiveClients();
@@ -104,6 +105,7 @@ public class NewClientConnection {
 
         return true;
     }
+	
 	
 	public void getFileList() {
 		// Retrieve the list of clients and files from the server
@@ -223,21 +225,51 @@ public class NewClientConnection {
 		    
 		    
 		    // Request the list of files to the host client
-		    System.out.println(ip);
-		    System.out.println(port);
-		    for(int i=0; i<names.size(); i++) {
-		    	System.out.println(names.get(i));
-		    }
+		    NewClientConnection nc = new NewClientConnection("default", "default", ip, "wlan1", 45001);
+		    nc.connectToHost(ip, port, names);
 		    
-		                
-		    /* TODO: new socket for the connection client to client
-		     * => Retrieve the values ip and port for the connection
-		     * => Then send the below list "names" via dataOutput
-		     */
 		    
-		    // new Socket (ip, port);
-		    // dataOutput.sendObject(names);
+//		    System.out.println(ip);
+//		    System.out.println(port);
+//		    for(int i=0; i<names.size(); i++) {
+//		    	System.out.println(names.get(i));
+//		    }
+
+		   
 		    
+		}
+	}
+	
+	
+	// Get the connection to the server
+	public void connectToHost(String ip, int port, ArrayList<String> names) {
+		try {
+			serverAddress = InetAddress.getByName(ip);
+			clientSocket = new Socket(serverAddress, port);
+			System.out.println("I got the connexion to " + serverAddress);
+			
+			
+			// Test if the download repository exists
+			String folderPath = homePath + "/DownloadsP2P";
+					
+			if (fileManager.createRepository(folderPath)) {
+				System.out.println("The repository has been created on your desktop.");
+			}
+			
+			
+			// Send the wish list
+			DataOutput dout = new DataOutput(clientSocket);
+			dout.sendObject(names);
+			
+			
+			// Download the files
+			DataInput din = new DataInput(clientSocket);
+			din.receiveData(folderPath);
+			
+		} catch(UnknownHostException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
 	}
 
