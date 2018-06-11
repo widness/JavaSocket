@@ -69,8 +69,13 @@ public class NetworkManager {
         try {
             localAddress = this.getLocalAddress("wlan1");
 
-            //Warning : the backlog value (2nd parameter) is handled by the implementation
-            srvSocket = new ServerSocket(45000, 2, localAddress);
+            // Warning : the backlog value (2nd parameter) is handled by the implementation
+            if (isServer) {
+                srvSocket = new ServerSocket(45000, 2, localAddress);
+            } else {
+                srvSocket = new ServerSocket(45001, 2, localAddress);
+            }
+
             System.out.println("Listening to Port :" + srvSocket.getLocalPort());
 
             //Wait for a client connection

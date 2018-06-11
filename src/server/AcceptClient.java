@@ -44,6 +44,9 @@ public class AcceptClient implements Runnable {
                 if (clients.isPwdCorrect(client.getPseudo(), client.getPassword())) {
                     clients.updateClient(client);
                     fileHandler.writeElement(clients);
+                } else {
+                    System.out.println("Wrong password");
+                    clients.addNewClient(new Client("false", "false", "false", "false"));
                 }
             } else {
                 clients.addNewClient(client);

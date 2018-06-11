@@ -75,14 +75,35 @@ public class NewClientConnection {
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port), filesList);
-			
+
 		} catch(UnknownHostException e) {
-			e.printStackTrace();			 
+			e.printStackTrace();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public boolean acceptedByServer() {
+        dataInput = new DataInput(clientSocket);
+        Clients clients = dataInput.receiveClients();
+
+        // Get the list of clients and save it into the files list, IPs list and ports list (at same time)
+        for (Client c: clients.getClients()) {
+            if (c.getPseudo().equals("false")) {
+                System.out.println("user exist already and the password isn't the same");
+                return false;
+            }
+        }
+
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            System.out.println("couldn't close the socket");
+            e.printStackTrace();
+        }
+
+        return true;
+    }
 	
 	public void getFileList() {
 		// Retrieve the list of clients and files from the server
