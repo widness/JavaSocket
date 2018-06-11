@@ -55,7 +55,7 @@ public class AcceptClient implements Runnable {
             dataOutput = new DataOutput(clientSocket);
             dataOutput.sendObject(clients);
 
-            dataInput.receiveData();
+            //dataInput.receiveData();
             
             Thread.sleep(3000);
             

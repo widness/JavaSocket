@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+import common.NetworkManager;
+
 
 public class Main {	
 	
@@ -38,15 +40,20 @@ public class Main {
         
         
         // 1 : the client want just to register, 2 : the client connects as "guest" and ask for file list
-    	System.out.println("What would you like to do?\n"
-    			+ "Type 1 if you want to register or type 2 if you want to ask for file list, then press ENTER key.");
+    	System.out.print("What would you like to do?\n"
+    			+ "Type 1 if you want just to register or type 2 if you want to ask for file list, then press ENTER key. ");
     	
-    	answer = scan.nextLine();
-    	
-    	while(choice == false) {
+    	scan.nextLine();
+    	   	
+    	while(choice == false) {  
+    		answer = scan.nextLine();
+    		
         	if (answer.equals("1")) {
         		choice = true;
+
         		// TODO: the client transforms into server
+        		
+        		
         	}
         	else {
         		if (answer.equals("2")) {
@@ -57,8 +64,7 @@ public class Main {
         		}
         		else {
         			System.out.println("Please correct your answer: you can only type 1 or 2.");
-        			answer = scan.nextLine();
-        		}
+           		}
         	}
     	}
     }

@@ -11,7 +11,7 @@ import java.util.Enumeration;
 
 public class NetworkManager {
     private InetAddress localAddress = null;
-
+    
     
     public InetAddress getLocalAddress(String interfaceName) {
         try {

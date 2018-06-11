@@ -158,6 +158,7 @@ public class NewClientConnection {
 				JSONObject object = new JSONObject(cf);
 				
 				String ip = object.getString("ip");
+				System.out.println(cf);
 				
 				if(!IPexists(ip, allIP)) {
 					allIP.add(ip);
@@ -203,6 +204,8 @@ public class NewClientConnection {
 		     * => Then send the below list "names" via dataOutput
 		     */
 		    
+		    // new Socket (ip, port);
+		    // dataOutput.sendObject(names);
 		    
 		}
 	}
