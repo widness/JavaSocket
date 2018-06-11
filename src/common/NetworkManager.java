@@ -1,5 +1,6 @@
 package common;
 
+import client.AcceptClientFromClient;
 import server.AcceptClient;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -60,7 +61,7 @@ public class NetworkManager {
     
     // @param: if the server calls this function or a client
     // If the server -> Check password and send a list back
-    // @see: AcceptClient
+    // @see: AcceptClientFromClient
     public void startingListening(boolean isServer) {
         InetAddress localAddress;
         ServerSocket srvSocket;
@@ -85,10 +86,15 @@ public class NetworkManager {
 
                 System.out.println("Hey, somebody wants to connect!");
 
-                Thread t = new Thread(new AcceptClient(clientSocket, clientNo));
+                if(isServer){
+                    Thread t = new Thread(new AcceptClient(clientSocket, clientNo));
+                    t.start();
+                } else {
+                    Thread t = new Thread(new AcceptClientFromClient(clientSocket, clientNo));
+                    t.start();
+                }
                 clientNo++;
 
-                t.start();
             }
         } catch (IOException e) {
             e.printStackTrace();
