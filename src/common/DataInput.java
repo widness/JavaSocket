@@ -98,10 +98,10 @@ public class DataInput {
     		ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
     		
     		try {
-    			//DownloadFiles dl = (DownloadFiles) objectInput.readObject();
-    			//ArrayList<String> names = dl.getNames();
+    			DownloadFiles dl = (DownloadFiles) objectInput.readObject();
+    			ArrayList<String> names = dl.getNames();
     			ArrayList<byte[]> bytes = (ArrayList<byte[]>)objectInput.readObject();
-                
+
     			
     			for (int i = 0; i < bytes.size(); i++) {
     				String name = names.get(i);

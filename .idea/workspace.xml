@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffa840c6-8c5a-4a9d-bc0a-433d27df0031" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientList.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileList.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/AcceptClientFromClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/AcceptClientFromClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/DataInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/DataInput.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +35,8 @@
       <file leaf-file-name="DataInput.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/common/DataInput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="102" column="38" selection-start-line="102" selection-start-column="38" selection-end-line="102" selection-end-column="38" />
+            <state relative-caret-position="172">
+              <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -113,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/common/FileToSend.java" />
         <option value="$PROJECT_DIR$/src/common/Files.java" />
         <option value="$PROJECT_DIR$/src/model/Client.java" />
-        <option value="$PROJECT_DIR$/src/common/DataInput.java" />
         <option value="$PROJECT_DIR$/src/common/DataOutput.java" />
         <option value="$PROJECT_DIR$/src/common/FileHandler.java" />
         <option value="$PROJECT_DIR$/src/common/File.java" />
@@ -133,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/common/dateManager.java" />
         <option value="$PROJECT_DIR$/src/server/AcceptClient.java" />
         <option value="$PROJECT_DIR$/src/client/AcceptClientFromClient.java" />
+        <option value="$PROJECT_DIR$/src/common/DataInput.java" />
       </list>
     </option>
   </component>
@@ -319,12 +316,12 @@
       <workItem from="1528752427576" duration="189000" />
       <workItem from="1528756352621" duration="1191000" />
       <workItem from="1528757804034" duration="5431000" />
-      <workItem from="1528818824395" duration="5385000" />
+      <workItem from="1528818824395" duration="5785000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49333000" />
+    <option name="totallyTimeSpent" value="49733000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -619,8 +616,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/DataInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="102" column="38" selection-start-line="102" selection-start-column="38" selection-end-line="102" selection-end-column="38" />
+        <state relative-caret-position="172">
+          <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
         </state>
       </provider>
     </entry>
