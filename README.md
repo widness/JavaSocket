@@ -1,4 +1,4 @@
-<em>You can find the jar there</em>
+<em>You can find the jar there: JavaSocket/out/artifacts/</em><br/>
 <strong>Server side</strong>
 1. Create a config.txt (where you start the application) (Ex in C:\Users\MyName)<br/>
   1.1 Enter: [IP];[NetworkInterface];45000
