@@ -49,7 +49,7 @@ public class AcceptClientFromClient implements Runnable {
                      
             ArrayList<String> wishList = dataInput.receiveList();
             for (String file: wishList) {
-            	Path path = Paths.get(file);
+            	Path path = Paths.get(homePath + "\\JavaSocket\\" +file);
             	byte[] bytes = Files.readAllBytes(path);
             	data.add(bytes);
             }
