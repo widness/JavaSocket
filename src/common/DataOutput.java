@@ -26,7 +26,15 @@ public class DataOutput {
         sendObject(me);
     }
 
-    
+    public void sendDownloadFiles(DownloadFiles objectToSend) {
+        try {
+            ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+            objectOutput.writeObject(objectToSend);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void sendObject(Object objectToSend) {
         try {
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());

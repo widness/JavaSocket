@@ -28,11 +28,13 @@ public class Main {
     	
 
     	// Connect to the server
-    	Scanner scan = new Scanner(System.in);
+    	Scanner scan;
 
     	boolean isConnected = false;
 
-    	while(!isConnected) { // TODO: See if you want to change because you put all in the NewClientConnection,
+    	while(!isConnected) {
+            scan = new Scanner(System.in);
+            // TODO: See if you want to change because you put all in the NewClientConnection,
     	    // TODO: I can't go out of the while with the sc variable, that's why it's insinde it
             System.out.print("Hello.\nWhat's your pseudo? ");
             pseudo = scan.nextLine();

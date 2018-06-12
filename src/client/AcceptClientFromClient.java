@@ -60,7 +60,7 @@ public class AcceptClientFromClient implements Runnable {
                    
             // Send the files to the other client
             dataOutput = new DataOutput(clientSocket);
-            dataOutput.sendObject(dl);
+            dataOutput.sendDownloadFiles(dl);
             
             
 
