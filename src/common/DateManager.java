@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class dateManager {
+public class DateManager {
 
     public int getMonth(){
         Date date = new Date();

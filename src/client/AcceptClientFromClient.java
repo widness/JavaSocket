@@ -44,20 +44,23 @@ public class AcceptClientFromClient implements Runnable {
 
 
             // Receive the list from the client
+            ArrayList<String> names = new ArrayList<String>();
             ArrayList<byte[]> data = new ArrayList<byte[]>();
-            //String folderPath = homePath + "/JavaSocket";
                      
             ArrayList<String> wishList = dataInput.receiveList();
             for (String file: wishList) {
             	Path path = Paths.get(homePath + "\\JavaSocket\\" +file);
             	byte[] bytes = Files.readAllBytes(path);
+            	names.add(file);
             	data.add(bytes);
             }
             
+            DownloadFiles dl = new DownloadFiles(names, data);
             
+                   
             // Send the files to the other client
             dataOutput = new DataOutput(clientSocket);
-            dataOutput.sendObject(data);
+            dataOutput.sendObject(dl);
             
             
 

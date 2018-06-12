@@ -248,7 +248,7 @@ public class NewClientConnection {
 			
 			
 			// Test if the download repository exists
-			String folderPath = homePath + "/DownloadsP2P";
+			String folderPath = homePath + "\\DownloadsP2P\\";
 					
 			if (fileManager.createRepository(folderPath)) {
 				System.out.println("The repository has been created on your desktop.");

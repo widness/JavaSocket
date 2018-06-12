@@ -22,7 +22,7 @@ public class AcceptClient implements Runnable {
     private DataOutput dataOutput;
     private Logger logger;
     private FileHandler fh;
-    private dateManager dateManager;
+    private DateManager dateManager;
     
     public AcceptClient(Socket clientSocket, int clientNo) throws Exception {
         this.clientSocket = clientSocket;
@@ -30,7 +30,7 @@ public class AcceptClient implements Runnable {
         this.clientListManager = new ClientListManager();
         this.clients = new Clients();
         this.clients = clientListManager.readElements();
-        this.dateManager = new dateManager();
+        this.dateManager = new DateManager();
         // Loggers
         logger = Logger.getLogger("acceptClient");
 

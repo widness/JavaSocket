@@ -100,16 +100,20 @@ public class DataInput {
     		try {
     			DownloadFiles dl = (DownloadFiles) objectInput.readObject();
     			ArrayList<String> names = dl.getNames();
-    			ArrayList<byte[]> bytes = (ArrayList<byte[]>)objectInput.readObject();
+    			ArrayList<byte[]> bytes = dl.getBytes();
 
     			
     			for (int i = 0; i < bytes.size(); i++) {
     				String name = names.get(i);
     				byte[] item = bytes.get(i);
     				
+    				// TEST
+    				System.out.println(name + " " + item);
+    				
     				name = retrieveFileName(name);
     				
-    				readBytes(path, item);
+    				String completedPath = path + name;
+    				readBytes(completedPath, item);
     			}
     		} catch (ClassNotFoundException e) {
 				e.printStackTrace();
