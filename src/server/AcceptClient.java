@@ -2,8 +2,10 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
+import java.util.logging.Logger;
 import common.*;
 import common.Client;
 
@@ -18,20 +20,31 @@ public class AcceptClient implements Runnable {
     private String[] clientInfo;
     private InetAddress clientAddress;
     private DataOutput dataOutput;
-    private loggingManager loggingManager;
-
+    private Logger logger;
+    private FileHandler fh;
+    private dateManager dateManager;
     
     public AcceptClient(Socket clientSocket, int clientNo) throws Exception {
         this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
-        this.loggingManager = new loggingManager();
         this.clientListManager = new ClientListManager();
         this.clients = new Clients();
         this.clients = clientListManager.readElements();
+        this.dateManager = new dateManager();
+        // Loggers
+        logger = Logger.getLogger("acceptClient");
+
+        try{
+            fh = new FileHandler("./logger/connection" + dateManager.getMonth() + ".log", true);
+        } catch (Exception e) { // If not exist, creat a new one
+            fh = new FileHandler("./logger/connection" + dateManager.getMonth() + ".log");
+        }
+
+        logger.addHandler(fh);
     }
     
-    
     public void run() {
+
         try {
             System.out.println("Client Nr " +clientNumber+ " is connected.");
             System.out.println("Socket is available for connection: "+ clientSocket);
@@ -46,12 +59,16 @@ public class AcceptClient implements Runnable {
                 if (clients.isPwdCorrect(client.getPseudo(), client.getPassword())) {
                     clients.updateClient(client);
                     clientListManager.writeElement(clients);
+                    logger.log(Level.INFO, clients.getClientName() + " is connected");
                 } else {
                     System.out.println("Wrong password");
-                    loggingManager.addWarningLog(clients.getClientName() + "used a wrong password");
-                    clients.addNewClient(new Client("false", "false", "false", "false"));
+                    logger.log(Level.WARNING, clients.getClientName() + " used a wrong password");
+
+                    Client defaultClient = new Client("false", "false", "false", "false");
+                    clients.addNewClient(defaultClient);
                 }
             } else {
+                logger.log(Level.INFO, clients.getClientName() + " create a new account");
                 clients.addNewClient(client);
                 clientListManager.writeElement(clients);
             }
@@ -74,6 +91,7 @@ public class AcceptClient implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Exception e) {
+            logger.log(Level.SEVERE, clients.getClientName() + " Loose the connection");
             e.printStackTrace();
         }
     }
