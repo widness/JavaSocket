@@ -1,5 +1,5 @@
 <strong>Server side</strong>
-1. Create a config.txt (where you start the application) (Ex in C:\Users\MyName)
+1. Create a config.txt (where you start the application) (Ex in C:\Users\MyName)<br/>
   1.1 Enter: [IP];[NetworkInterface];45000
     Ex: 192.168.1.125;wlan1;45000
    
