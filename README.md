@@ -1,7 +1,6 @@
 <strong>Server side</strong>
-1. Open the config.txt (findin the src folder)
-  1.1 If not existe: create a new one
-  1.2 Enter: [IP];[NetworkInterface];45000
+1. Create a config.txt (where you start the application) (Ex in C:\Users\MyName)
+  1.1 Enter: [IP];[NetworkInterface];45000
     Ex: 192.168.1.125;wlan1;45000
    
 2. Start the server application
