@@ -7,9 +7,12 @@ import java.util.ArrayList;
 public class Clients implements Serializable {
     private static final long serialVersionUID = 5832063776451490808L;
     private ArrayList<Client> clients = new ArrayList<Client>();
-
+    private Client clientFocused = new Client("undefined", "undefined", "undefined", "undefined"); //The actual when use isClient() @see getClientName()
     public Clients(){}
-    
+
+    public Client getClientName() {
+       return clientFocused;
+    }
     
     public boolean addNewClient(Client client) {
         if (!this.isClient(client.getPseudo())) {
@@ -59,6 +62,7 @@ public class Clients implements Serializable {
         try {
             for (Client c : clients) {
                 if (c.getPseudo().equalsIgnoreCase(pseudo)) {
+                    this.clientFocused = c;
                     if (c.getPassword().equals(password)) {
                         System.out.println("I confirm the password.");
                         return true;

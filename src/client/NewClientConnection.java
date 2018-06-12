@@ -15,7 +15,7 @@ import common.ClientFiles;
 import common.Clients;
 import common.DataInput;
 import common.DataOutput;
-import common.FileHandler;
+import common.ClientListManager;
 import common.FileManager;
 import common.NetworkManager;
 
@@ -23,7 +23,7 @@ import common.NetworkManager;
 
 public class NewClientConnection {
     private NetworkManager networkManager = new NetworkManager();
-    private FileHandler fileHandler = new FileHandler();
+    private ClientListManager fileHandler = new ClientListManager();
     private FileManager fileManager = new FileManager();
 	private Socket clientSocket;
     private Clients clients;
@@ -71,8 +71,8 @@ public class NewClientConnection {
 			
 			fileManager.retrieveListFiles(folderPath);
 			String[] filesList = fileManager.getListFiles();
-			
-			
+
+
 			// Give login information to the server
 			dataOutput = new DataOutput(clientSocket);
 			dataOutput.giveInformationToServer(clientPseudo, password, localIP, Integer.toString(port), filesList);
@@ -121,12 +121,11 @@ public class NewClientConnection {
 			//if (!c.getClientIP().equals(localIP)) {			// in comments for testing, don't delete this line !!
 		        for (String s: c.getFiles()) {
 		            files.add(s);
-		            ips.add(c.getClientIP());
+                    ips.add(c.getClientIP());
 		            ports.add(c.getClientPort());
 		        }
 			//}
 		}
-		
 		
 		// Print the files list
 		for (int i = 0; i < files.size(); i++) {
@@ -148,22 +147,22 @@ public class NewClientConnection {
 		ClientFile targetedFile;
 		int fileNumber;
 		boolean request = false;
-		
+
+
 		// Search for a file with the index typed by the client and add it to the list of choices            
 		while (request == false) {
 			if (scan.hasNextInt()) {
 			    fileNumber = scan.nextInt();
 			    
 			    if (fileNumber >= 0) {
+                    System.out.println(files.size());
 			    	try {
-			    		System.out.println(files.get(fileNumber)); 
-		            	
 		                targetedFile = new ClientFile(files.get(fileNumber),
 		                        ips.get(fileNumber),
-		                        ports.get(fileNumber));
-		                
+		                        "45001"); // default port
 		                choices.addFile(targetedFile);
-			    	} catch (ArrayIndexOutOfBoundsException e) { 
+			    	} catch (Exception e) {
+			    	    e.printStackTrace();
 		            	// Too big number
 		                System.out.println("Can't find this file, please try again.");
 		            }
@@ -184,13 +183,14 @@ public class NewClientConnection {
 		choosenFiles = choices.getClientFiles();
 		
 		ArrayList<String> allIP = new ArrayList<String>();
-		
+
 		try {
 			for (ClientFile cf: choosenFiles) {
 				JSONObject object = new JSONObject(cf);
-				
+
+                System.out.println(cf);
 				String ip = object.getString("ip");
-				System.out.println(cf);
+
 				
 				if(!IPexists(ip, allIP)) {
 					allIP.add(ip);
@@ -221,8 +221,7 @@ public class NewClientConnection {
 		    } catch (JSONException e) {
 				e.printStackTrace();
 			}
-		    
-		    
+
 		    // Request the list of files to the host client
 		    NewClientConnection nc = new NewClientConnection("default", "default", ip, "wlan1", 45001);
 		    nc.connectToHost(ip, port, names);

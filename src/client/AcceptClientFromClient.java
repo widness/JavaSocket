@@ -14,7 +14,7 @@ public class AcceptClientFromClient implements Runnable {
 	private FileManager fileManager = new FileManager();
     private Clients clients;
     private Socket clientSocket, clientSocket2;
-    private FileHandler fileHandler;
+    private ClientListManager fileHandler;
     private int clientNumber;
     private DataInput dataInput;
     private Client recievedInfo;
@@ -28,7 +28,7 @@ public class AcceptClientFromClient implements Runnable {
         this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
 
-        this.fileHandler = new FileHandler();
+        this.fileHandler = new ClientListManager();
         this.clients = new Clients();
         this.clients = fileHandler.readElements();
         this.homePath = fileManager.getHomePath();

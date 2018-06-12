@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import javax.swing.filechooser.FileSystemView;
 
 
-public class FileHandler {
+public class ClientListManager {
     private File[] listFiles;
     private String[] list;
     private File f;
 
     
-    public FileHandler() {
+    public ClientListManager() {
         this.f = new File("clientList.ser");
     }
 

@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.logging.Level;
 
 import common.*;
 import common.Client;
@@ -10,22 +11,23 @@ import common.Client;
 public class AcceptClient implements Runnable {
     private Clients clients;
     private Socket clientSocket, clientSocket2;
-    private FileHandler fileHandler;
+    private ClientListManager clientListManager;
     private int clientNumber;
     private DataInput dataInput;
     private Client recievedInfo;
     private String[] clientInfo;
     private InetAddress clientAddress;
     private DataOutput dataOutput;
+    private loggingManager loggingManager;
 
     
     public AcceptClient(Socket clientSocket, int clientNo) throws Exception {
         this.clientSocket = clientSocket;
         this.clientNumber = clientNo;
-
-        this.fileHandler = new FileHandler();
+        this.loggingManager = new loggingManager();
+        this.clientListManager = new ClientListManager();
         this.clients = new Clients();
-        this.clients = fileHandler.readElements();
+        this.clients = clientListManager.readElements();
     }
     
     
@@ -43,14 +45,15 @@ public class AcceptClient implements Runnable {
             if (clients.isClient(client.getPseudo())) {
                 if (clients.isPwdCorrect(client.getPseudo(), client.getPassword())) {
                     clients.updateClient(client);
-                    fileHandler.writeElement(clients);
+                    clientListManager.writeElement(clients);
                 } else {
                     System.out.println("Wrong password");
+                    loggingManager.addWarningLog(clients.getClientName() + "used a wrong password");
                     clients.addNewClient(new Client("false", "false", "false", "false"));
                 }
             } else {
                 clients.addNewClient(client);
-                fileHandler.writeElement(clients);
+                clientListManager.writeElement(clients);
             }
 
             clientAddress = InetAddress.getByName(client.getClientIP());

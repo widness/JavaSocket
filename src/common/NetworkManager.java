@@ -3,10 +3,7 @@ package common;
 import client.AcceptClientFromClient;
 import server.AcceptClient;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.Enumeration;
 
 
@@ -40,21 +37,26 @@ public class NetworkManager {
     
     public String getOwnIp(String interfaceName) {
         try {
-            NetworkInterface ni = NetworkInterface.getByName(interfaceName);
-            Enumeration<InetAddress> inetAddresses = ni.getInetAddresses();
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                // filters out 127.0.0.1 and inactive interfaces
+                if (iface.isLoopback() || !iface.isUp())
+                    continue;
 
-            while (inetAddresses.hasMoreElements()) {
-                InetAddress ia = inetAddresses.nextElement();
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while(addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
 
-                if (!ia.isLoopbackAddress()) {
-                    System.out.println(ni.getName() + " =>   Own IP: " + ia.getHostAddress());
-                    return ia.getHostAddress();
+                    // *EDIT*
+                    if (addr instanceof Inet6Address) continue;
+                    System.out.println(iface.getDisplayName() + " " + addr.getHostAddress());
+                    return addr.getHostAddress();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
         }
-        
         return null;
     }
 
@@ -63,6 +65,7 @@ public class NetworkManager {
     // If the server -> Check password and send a list back
     // @see: AcceptClientFromClient
     public void startingListening(boolean isServer) {
+
         InetAddress localAddress;
         ServerSocket srvSocket;
         int clientNo = 1;
