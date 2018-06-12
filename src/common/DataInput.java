@@ -107,9 +107,6 @@ public class DataInput {
     				String name = names.get(i);
     				byte[] item = bytes.get(i);
     				
-    				// TEST
-    				System.out.println(name + " " + item);
-    				
     				name = retrieveFileName(name);
     				
     				String completedPath = path + name;
