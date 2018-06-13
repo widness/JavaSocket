@@ -7,13 +7,17 @@ import java.util.ArrayList;
 public class Clients implements Serializable {
     private static final long serialVersionUID = 5832063776451490808L;
     private ArrayList<Client> clients = new ArrayList<Client>();
-    private Client clientFocused = new Client("undefined", "undefined", "undefined", "undefined"); //The actual when use isClient() @see getClientName()
+    private Client clientFocused = new Client("undefined", "undefined", "undefined", "undefined");
+    
     public Clients(){}
 
+    
     public Client getClientName() {
        return clientFocused;
     }
     
+    
+    // Add a new client to the list of register clients
     public boolean addNewClient(Client client) {
         if (!this.isClient(client.getPseudo())) {
             this.clients.add(client);
@@ -25,6 +29,7 @@ public class Clients implements Serializable {
     }
 
     
+    // Update a client in the list
     public boolean updateClient(Client client) {
         for (int i = 0; i < clients.size(); i++)
             if (clients.get(i).getPseudo().equalsIgnoreCase(client.getPseudo())) {
@@ -53,11 +58,13 @@ public class Clients implements Serializable {
         return false;
     }
 
+    
     public ArrayList<Client> getClients() {
         return this.clients;
     }
     
     
+    // Check the password of the client (=> check in the list)
     public boolean isPwdCorrect(String pseudo, String password) {
         try {
             for (Client c : clients) {
@@ -76,6 +83,7 @@ public class Clients implements Serializable {
         }
     }
 
+    
     public int size() {
         return clients.size();
     }

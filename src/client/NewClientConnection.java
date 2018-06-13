@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import common.Client;
 import common.ClientFile;
 import common.ClientFiles;
 import common.Clients;
 import common.DataInput;
 import common.DataOutput;
-import common.ClientListManager;
 import common.FileManager;
 import common.NetworkManager;
 
@@ -23,7 +21,6 @@ import common.NetworkManager;
 
 public class NewClientConnection {
     private NetworkManager networkManager = new NetworkManager();
-    private ClientListManager fileHandler = new ClientListManager();
     private FileManager fileManager = new FileManager();
 	private Socket clientSocket;
     private Clients clients;
@@ -85,6 +82,7 @@ public class NewClientConnection {
 	}
 
 	
+	// Test the connection to the server (pseudo/password)
 	public boolean acceptedByServer() {
         dataInput = new DataInput(clientSocket);
         clients = dataInput.receiveClients();
@@ -92,7 +90,7 @@ public class NewClientConnection {
         // Get the list of clients and save it into the files list, IPs list and ports list (at same time)
         for (Client c: clients.getClients()) {
             if (c.getPseudo().equals("false")) {
-                System.out.println("user exist already and the password isn't the same");
+                System.out.println("This user already exists and the password isn't correct.");
                 return false;
             }
         }
@@ -100,15 +98,18 @@ public class NewClientConnection {
         return true;
     }
 
+	
     public void closeSocket(){
         try {
             clientSocket.close();
         } catch (IOException e) {
-            System.out.println("couldn't close the socket");
+            System.out.println("Can't close the socket.");
             e.printStackTrace();
         }
     }
 	
+    
+    // Propose the list of files sent by the other clients
 	public void getFileList() {
 		
 		ArrayList<String> files = new ArrayList<String>();
@@ -118,14 +119,15 @@ public class NewClientConnection {
 		
 		// Get the list of clients and save it into the files list, IPs list and ports list (at same time)
 		for (Client c: this.clients.getClients()) {
-			//if (!c.getClientIP().equals(localIP)) {			// in comments for testing, don't delete this line !!
+			if (!c.getClientIP().equals(localIP)) {			
 		        for (String s: c.getFiles()) {
 		            files.add(s);
                     ips.add(c.getClientIP());
 		            ports.add(c.getClientPort());
 		        }
-			//}
+			}
 		}
+		
 		
 		// Print the files list
 		for (int i = 0; i < files.size(); i++) {
@@ -137,7 +139,7 @@ public class NewClientConnection {
 		}
 		     
 		
-		// Save the client's choice
+		// Save the client's choices
 		System.out.println("Which file do you want to download?");
 		System.out.println("Type the number of the file you want to choose and press ENTER key to validate.");
 		System.out.println("To send your request to the server, type -1 and press ENTER key.");
@@ -225,16 +227,6 @@ public class NewClientConnection {
 		    // Request the list of files to the host client
 		    NewClientConnection nc = new NewClientConnection("default", "default", ip, "wlan1", 45001);
 		    nc.connectToHost(ip, port, names);
-		    
-		    
-//		    System.out.println(ip);
-//		    System.out.println(port);
-//		    for(int i=0; i<names.size(); i++) {
-//		    	System.out.println(names.get(i));
-//		    }
-
-		   
-		    
 		}
 	}
 	
@@ -272,7 +264,7 @@ public class NewClientConnection {
 	}
 
 
-	// Check it the IP already exists in the list
+	// Check if the IP already exists in the list
 	private boolean IPexists(String ip, ArrayList<String> allIP) {
 		boolean test = false;
 		

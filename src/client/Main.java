@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-
 import common.NetworkManager;
 
 
@@ -28,24 +27,22 @@ public class Main {
     	
 
     	// Connect to the server
-    	Scanner scan;
-
     	boolean isConnected = false;
 
     	while(!isConnected) {
-            scan = new Scanner(System.in);
-            // TODO: See if you want to change because you put all in the NewClientConnection,
-    	    // TODO: I can't go out of the while with the sc variable, that's why it's insinde it
+    		Scanner scan = new Scanner(System.in);
+    		
             System.out.print("Hello.\nWhat's your pseudo? ");
             pseudo = scan.nextLine();
             System.out.print("What's your password? ");
             password = scan.nextLine();
 
             NewClientConnection sc = new NewClientConnection(pseudo, password, ip, name, Integer.parseInt(port));
-
             sc.registerToServer();
-            if (sc.acceptedByServer()) { // Iff accepted -> Close the socket with the server
+                      
+            if (sc.acceptedByServer()) {
                 isConnected = true;
+                
                 // 1 : the client want just to register, 2 : the client connects as "guest" and ask for file list
                 System.out.print("What would you like to do?\n"
                         + "Type 1 if you want just to register or type 2 if you want to ask for file list, then press ENTER key. ");

@@ -11,6 +11,7 @@ public class NetworkManager {
     private InetAddress localAddress = null;
     
     
+    // Method to return the local address
     public InetAddress getLocalAddress(String interfaceName) {
         try {
             NetworkInterface ni = NetworkInterface.getByName(interfaceName);
@@ -35,12 +36,14 @@ public class NetworkManager {
     }
 
     
+    // Method to get the own IP
     public String getOwnIp(String interfaceName) {
         try {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements()) {
                 NetworkInterface iface = interfaces.nextElement();
-                // filters out 127.0.0.1 and inactive interfaces
+                
+                // Filters ignore 127.0.0.1 and inactive interfaces
                 if (iface.isLoopback() || !iface.isUp())
                     continue;
 
@@ -60,12 +63,10 @@ public class NetworkManager {
         return null;
     }
 
-    
-    // @param: if the server calls this function or a client
-    // If the server -> Check password and send a list back
-    // @see: AcceptClientFromClient
-    public void startingListening(boolean isServer) {
 
+    // This method checks if this is the server which calls the function or if this is a client
+    // If the server calls the method => checks the password and sends a list of files back
+    public void startingListening(boolean isServer) {
         InetAddress localAddress;
         ServerSocket srvSocket;
         int clientNo = 1;

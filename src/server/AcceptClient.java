@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
-
 import java.util.logging.Logger;
 import common.*;
 import common.Client;
@@ -12,17 +11,16 @@ import common.Client;
 
 public class AcceptClient implements Runnable {
     private Clients clients;
-    private Socket clientSocket, clientSocket2;
+    private Socket clientSocket;
     private ClientListManager clientListManager;
     private int clientNumber;
     private DataInput dataInput;
-    private Client recievedInfo;
-    private String[] clientInfo;
     private InetAddress clientAddress;
     private DataOutput dataOutput;
     private Logger logger;
     private FileHandler fh;
     private DateManager dateManager;
+    
     
     public AcceptClient(Socket clientSocket, int clientNo) throws Exception {
         this.clientSocket = clientSocket;
@@ -31,27 +29,29 @@ public class AcceptClient implements Runnable {
         this.clients = new Clients();
         this.clients = clientListManager.readElements();
         this.dateManager = new DateManager();
-        // Loggers
+        
+        // Logger
         logger = Logger.getLogger("acceptClient");
 
         try{
             fh = new FileHandler("./logger/connection" + dateManager.getMonth() + ".log", true);
-        } catch (Exception e) { // If not exist, creat a new one
+        } catch (Exception e) { 
+        	// If the month's log doesn't, creates a new one
             fh = new FileHandler("./logger/connection" + dateManager.getMonth() + ".log");
         }
 
         logger.addHandler(fh);
     }
     
+    
+    // Start the server
     public void run() {
-
         try {
             System.out.println("Client Nr " +clientNumber+ " is connected.");
             System.out.println("Socket is available for connection: "+ clientSocket);
 
             dataInput = new DataInput(clientSocket);
 
-            // recievedInfo = dataInput.receiveArrayListFromClient();
             Client client = dataInput.receiveClient();
 
             // 0: pseudo | 1: password | 2: clientIP | 3: port | 4: fileList
@@ -59,16 +59,16 @@ public class AcceptClient implements Runnable {
                 if (clients.isPwdCorrect(client.getPseudo(), client.getPassword())) {
                     clients.updateClient(client);
                     clientListManager.writeElement(clients);
-                    logger.log(Level.INFO, clients.getClientName() + " is connected");
+                    logger.log(Level.INFO, clients.getClientName() + " is connected.");
                 } else {
-                    System.out.println("Wrong password");
-                    logger.log(Level.WARNING, clients.getClientName() + " used a wrong password");
+                    System.out.println("Wrong password.");
+                    logger.log(Level.WARNING, clients.getClientName() + " used a wrong password.");
 
                     Client defaultClient = new Client("false", "false", "false", "false");
                     clients.addNewClient(defaultClient);
                 }
             } else {
-                logger.log(Level.INFO, clients.getClientName() + " create a new account");
+                logger.log(Level.INFO, clients.getClientName() + " creates a new account.");
                 clients.addNewClient(client);
                 clientListManager.writeElement(clients);
             }
@@ -78,7 +78,9 @@ public class AcceptClient implements Runnable {
             dataOutput = new DataOutput(clientSocket);
             dataOutput.sendObject(clients);
 
-            //dataInput.receiveData();
+            
+            
+            
             
             Thread.sleep(3000);
             
@@ -91,7 +93,7 @@ public class AcceptClient implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            logger.log(Level.SEVERE, clients.getClientName() + " Loose the connection");
+            logger.log(Level.SEVERE, clients.getClientName() + " looses the connection.");
             e.printStackTrace();
         }
     }

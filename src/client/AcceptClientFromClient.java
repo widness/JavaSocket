@@ -2,7 +2,6 @@ package client;
 
 import common.*;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,13 +12,10 @@ import java.util.ArrayList;
 public class AcceptClientFromClient implements Runnable {
 	private FileManager fileManager = new FileManager();
     private Clients clients;
-    private Socket clientSocket, clientSocket2;
+    private Socket clientSocket;
     private ClientListManager fileHandler;
     private int clientNumber;
     private DataInput dataInput;
-    private Client recievedInfo;
-    private String[] clientInfo;
-    private InetAddress clientAddress;
     private DataOutput dataOutput;
     private String homePath;
 
@@ -35,6 +31,7 @@ public class AcceptClientFromClient implements Runnable {
     }
 
     
+    // Run the server
     public void run() {
         try {
             System.out.println("Client Nr " +clientNumber+ " is connected.");
@@ -43,7 +40,7 @@ public class AcceptClientFromClient implements Runnable {
             dataInput = new DataInput(clientSocket);
 
 
-            // Receive the list from the client
+            // Receive the list of names from the client (wish list of files)
             ArrayList<String> names = new ArrayList<String>();
             ArrayList<byte[]> data = new ArrayList<byte[]>();
                      
@@ -63,23 +60,13 @@ public class AcceptClientFromClient implements Runnable {
             dataOutput.sendDownloadFiles(dl);
             
             
-
-//          ArrayList<byte[]> bytes = new ArrayList<byte[]>();
-//        	Path path = Paths.get(name);    
-//        	byte[] data = Files.readAllBytes(path);
-//        	bytes.add(data);
             
             
             
-            
-//            dataOutput = new DataOutput(clientSocket);
-//            dataOutput.sendObject(clients);
-
-            //dataInput.receiveData();
 
             Thread.sleep(3000);
 
-            //TODO: when the client is already connected, this message is still shown...
+            //TODO: when the client is connected, this message is still shown...
             System.out.println("End of connection to the client " + clientNumber);
 
             clientSocket.close();

@@ -20,30 +20,38 @@ public class Client implements Serializable {
         this.ip = clientIP;
         this.port = clientPort;
     }
-      
+    
+    
+    // List of getters and setters methods + a few short methods
     public void setFiles(ArrayList<String> files) {
         this.files = files;
     }
   
+    
     public void addFile(String fileName) {
         files.add(fileName);
     }
 
+    
     public ArrayList<String> getFiles() {
         return this.files;
     }
+    
     
     public String getPseudo() {
         return pseudo;
     }
 
+    
     public String getPassword() {
         return password;
     }
     
+    
     public String getClientIP() {
         return ip;
     }
+    
     
     public void setClientIP(String clientIP) {
         this.ip = clientIP;
@@ -59,18 +67,17 @@ public class Client implements Serializable {
         this.port = clientPort;
     }
     
-    
-    
-    // TODO: check if methods are used    
+       
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 
+    
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Override
+   
     public String toString() {
         return pseudo + ";" + password + ";" + ip + ";" + port;
     }

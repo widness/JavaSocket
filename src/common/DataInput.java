@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class DataInput {
 	private Socket socket;
-	private BufferedReader buffin;
 
 	
 	public DataInput(Socket socket) {
@@ -15,29 +14,13 @@ public class DataInput {
 	}
 
 	
-	// TODO: check if this method is used?
-	public String receiveStringFromClient() {
-		try {
-			buffin = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String message = buffin.readLine();
-
-			//buffin.close();
-			return message;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	
+	// Retrieve the client
     public Client receiveClient() {
         try {
             ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
             
             try {
                 Client client = (Client) objectInput.readObject();
-                //objectInput.close();
                 return client;
             } catch (ClassNotFoundException e) {
                 System.out.println("The title list has not come from the server.");
@@ -52,6 +35,7 @@ public class DataInput {
     }
 
     
+    // Retrieve the "Clients" object
     public Clients receiveClients() {
         try {
             ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
@@ -72,6 +56,7 @@ public class DataInput {
     }
     
     
+    // Retrieve the a list of string
     public ArrayList<String> receiveList() {
     	try {
     		ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
@@ -92,7 +77,7 @@ public class DataInput {
     }
 
 
-    // 0 : names of the files, 1 : files converted into bytes
+    // Retrieve all the sent data => 0 : names of the files, 1 : files converted into bytes
     public void receiveData(String path) {
     	try {
     		ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
@@ -121,6 +106,7 @@ public class DataInput {
     }
 
 
+    // Retrieve the file name from the entire path
 	private String retrieveFileName(String name) {
 		int startIndex = name.lastIndexOf('\\') + 1;
 		int endIndex = name.length();
@@ -130,6 +116,7 @@ public class DataInput {
 	}
 
 
+	// Method to write bytes in the downloads file
 	private void readBytes(String path, byte[] item) throws IOException {		
 		FileOutputStream fos = new FileOutputStream(path); 
 	    fos.write(item);

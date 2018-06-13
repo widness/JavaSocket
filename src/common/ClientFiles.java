@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 
 public class ClientFiles {
-    private static final long serialVersionUID = 5832163776451490808L;
     private ArrayList<ClientFile> clientFiles = new ArrayList<ClientFile>();
 
     public ClientFiles(){}
@@ -33,8 +32,8 @@ public class ClientFiles {
         return false;
     }
 
+    
     public ArrayList<ClientFile> getClientFiles() {
         return this.clientFiles;
     }
-
 }
