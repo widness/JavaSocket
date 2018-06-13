@@ -9,18 +9,20 @@
   <component name="ChangeListManager">
     <list default="true" id="ffa840c6-8c5a-4a9d-bc0a-433d27df0031" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientList.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/connection6.log" beforeDir="false" afterPath="$PROJECT_DIR$/logger/connection6.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/connection6.log.1" beforeDir="false" afterPath="$PROJECT_DIR$/logger/connection6.log.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/connection6.log.2" beforeDir="false" afterPath="$PROJECT_DIR$/logger/connection6.log.2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Client/AcceptClientFromClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Client/AcceptClientFromClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Client/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Client/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Client/NewClientConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Client/NewClientConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/ClientListManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/ClientListManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/Clients.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/Clients.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/DataInput.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/DataInput.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/DataOutput.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/DataOutput.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/AcceptClientFromClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/AcceptClientFromClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/DataOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/DataOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/DownloadFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/DownloadFiles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/NetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/Common/dateManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/Common/dateManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/common/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/common/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/common/ClientFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/common/ClientFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/common/ClientFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/common/ClientFiles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaSocket/server/AcceptClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaSocket/server/AcceptClient.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -140,11 +142,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-123" />
-    <option name="y" value="-28" />
-    <option name="width" value="1920" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-863" />
+    <option name="y" value="-1057" />
+    <option name="width" value="1536" />
+    <option name="height" value="916" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -154,43 +156,51 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="JavaSocket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaSocket" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSocketFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaSocketFinal" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JavaSocket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaSocket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSocketFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaSocketFinal" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JavaSocket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaSocket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSocketFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaSocketFinal" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JavaSocket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaSocket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSocketFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaSocketFinal" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="Client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaSocketFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaSocketFinal" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/JSON/java-json.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -315,14 +325,15 @@
       <workItem from="1528833923856" duration="1163000" />
       <workItem from="1528835149561" duration="737000" />
       <workItem from="1528837131578" duration="1398000" />
+      <workItem from="1528879930635" duration="346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54352000" />
+    <option name="totallyTimeSpent" value="54698000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-935" y="-926" width="1536" height="916" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -333,20 +344,19 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50166667" side_tool="true" weight="0.1915493" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5045573" side_tool="true" weight="0.3746479" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32957748" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945945" visible="true" weight="0.18815105" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945945" visible="true" weight="0.19013157" />
       <window_info anchor="right" id="Database" order="9" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49544272" weight="0.30985916" />
       <window_info id="Structure" order="1" sideWeight="0.50054055" side_tool="true" weight="0.15052083" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39859155" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="10" side_tool="true" weight="0.3296875" />
@@ -354,6 +364,7 @@
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32916668" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49544272" weight="0.30985916" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
