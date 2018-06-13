@@ -28,14 +28,22 @@ public class Main {
 
     	// Connect to the server
     	boolean isConnected = false;
+    	int count = 1;
 
     	while(!isConnected) {
     		Scanner scan = new Scanner(System.in);
-    		
-            System.out.print("Hello.\nWhat's your pseudo? ");
-            pseudo = scan.nextLine();
-            System.out.print("What's your password? ");
-            password = scan.nextLine();
+    		    		
+    		if (count == 1) {
+		        System.out.print("Hello.\nWhat's your pseudo? ");
+		        pseudo = scan.nextLine();
+		        System.out.print("What's your password? ");
+		        password = scan.nextLine();
+    		}
+    		else {
+    			scan.nextLine();
+		        System.out.print("\nInvalid password typed, please retry: ");
+		        password = scan.nextLine();
+    		}
 
             NewClientConnection sc = new NewClientConnection(pseudo, password, ip, name, Integer.parseInt(port));
             sc.registerToServer();
@@ -73,6 +81,8 @@ public class Main {
                     }
                 }
             }
+            
+            count++;
         }
     }
 }

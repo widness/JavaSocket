@@ -18,7 +18,6 @@ import common.FileManager;
 import common.NetworkManager;
 
 
-
 public class NewClientConnection {
     private NetworkManager networkManager = new NetworkManager();
     private FileManager fileManager = new FileManager();
